@@ -30,4 +30,31 @@ All the files used during the INTUITIVE project.
      - Requires:
        - 'chip_spikeclassifier' -> SNN training results
        - 'datasetPath' -> spike dataset 
+
+-------------------------------------------------------
+# VLSI23 (JOURNAL)
+- intuitive_classifier
+	- contains result of characterization of effect of circuit non-idealities to classification accuracy
+- intuitive_classifier_sensor
+	- contains result of classification of indentation period to integrated e-skin chip sensors
+- INTUITIVE_plots_csv_forjournal
+	- contains scripts and csv files to plot characterization results of e-skin chip circuits
+- out
+	- contains previous datasets in VLSI23 paper
+- output
+	- contains link to Google drive -> output from Pyvisa-based chip characterization
+- Poling_waveforms
+	- contains measurements during poling, poling setup, etc
+- PYVISA_measurements
+	- contains python scripts to run PYVISA-based chip characterization. Also includes MATLAB scripts to plot/process results
+- rasterplot
+	- contains MATLAB scripts to show/process spikes
+- SENSOR_DATASETS
+	- contains spike output dataset from chip characterization
+- SNN_SVM_PLOTS
+	- contains scripts to plot SNN+SVM training results
+- spikegen
+	- contains MATLAB scripts to generate model spikes used in characterization of effect of circuit non-idealities
+- utils
+	- various useful MATLAB scripts. 
      
