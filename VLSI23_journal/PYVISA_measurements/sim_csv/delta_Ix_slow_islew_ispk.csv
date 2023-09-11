@@ -1,0 +1,6 @@
+ispk ,value(i("/Idpi/MIx/S" ?result "tran") 10.005m   )-value(i("/Idpi/MIx/S" ?result "tran") 9.998m   ) islew 5e-08  (A),value(i("/Idpi/MIx/S" ?result "tran") 10.005m   )-value(i("/Idpi/MIx/S" ?result "tran") 9.998m   ) islew 1.5e-07  (A),value(i("/Idpi/MIx/S" ?result "tran") 10.005m   )-value(i("/Idpi/MIx/S" ?result "tran") 9.998m   ) islew 2.5e-07  (A),value(i("/Idpi/MIx/S" ?result "tran") 10.005m   )-value(i("/Idpi/MIx/S" ?result "tran") 9.998m   ) islew 3.5e-07  (A),value(i("/Idpi/MIx/S" ?result "tran") 10.005m   )-value(i("/Idpi/MIx/S" ?result "tran") 9.998m   ) islew 4.5e-07  (A)
+1.000E-6,69.73E-12,26.38E-12,15.10E-12,10.55E-12,8.126E-12
+3.250E-6,481.8E-12,172.8E-12,93.78E-12,62.58E-12,46.29E-12
+5.500E-6,1.214E-9,432.1E-12,230.8E-12,151.0E-12,109.7E-12
+7.750E-6,2.091E-9,742.2E-12,393.2E-12,255.6E-12,184.2E-12
+10.00E-6,3.038E-9,1.080E-9,570.1E-12,368.8E-12,264.1E-12

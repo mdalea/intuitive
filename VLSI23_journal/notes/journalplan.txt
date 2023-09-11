@@ -1,0 +1,158 @@
+Main motivations:
+- coarse voltage resolution because sensor capacitance is small (thin because it is small area)
+- noisy spikes good enough
+
+Tasks A (simulate + measure using ideal input)
+- bode plot of vpos_afe; bode plot post-RC of LCADC (direct input w/o sensors) -> measured BW is open-loop bandwidth; actual BW is higher (lower closed-loop gain)
+why low fHPF? To acquire static force info, despite using only piezoelectric sensors
+
+	why directly inject at Vminus? Parasitics at pad and pcb connection pulls HighZ node low resulting to moved Vcm and low gain -> Millman
+
+	FIGS: bode plot of vpos_afe (ideal vs measured at discrete points (5 per decade as Mohit's)) @ 3 ITAIL values
+	FIGS: bode plot post-RC (simulated) @ 3 ITAIL values
+
+- LCS/N-LCS circuit-level
+
+	FIGS: 
+		- //MC of Signal conditioning gain
+		- //MC of LCS comparator offset
+		- //MC of N-LCS comparator offset
+		- //MC of N-LCS step + tau
+
+	- difficult to measure first stage in feedback because it always behaves as open loop when you directly inject voltage input to VPOS_IN
+	- any mismatch on the DC common mode applied to vminus to the actual vcm at vplus will be amplified
+	- there is no forward DC path since the 2nd stage blocks DC
+	- static and dynamic error (low area + low power)
+	- compare measured VPOS_AFE,pp to simulated post-filtering
+
+	- why 1nA bias?
+		-low GBW is fine. Low closed-loop BW
+		-low iin,pp due to high Zin at passband
+
+- AER interface
+	- schematic
+	- timing waveform
+	- I/O to 5V	
+
+- SER + ITC by varying bit resolution (fixed IBIAS_TAIL) -> sine input. NOTE: Ali's paper has concluded that SER is not a good indicator of Linear SVM or SNN accuracy, but information-theoretic criteria (ITC)
+	-vmode: N (VREFH, VREFL)
+	-imode: VBIAS_IL (nominal at 0.8V), IBIAS_SLEW (fixed at >75nA ~192k evps), IBIAS_SPK (1uA,5uA,10uA), IBIAS_SPK_FAST (FASTTAU_EN=1 (reg)) (1uA,5uA,10uA), IBIAS_BLEED (fixed), IBIAS_TH (fixed);
+	- information-theoretic tuning/ Ali Safa
+	- effect on classification
+
+	FIGS: 
+		- VMODE:  SER vs N
+		- IMODE:  SER vs offset (fast), offset (slow), tau1 & tau2 (tau1 & tau2 are tuned together)
+		- classification vs ITC + SER for both VMODE, IMODE
+
+
+- linearity + noise of vpos_afe  NOTE: while noise density improves, bandwidth also increases with ITAIL -> open-loop vs closed-loop -> BW vs noise tradeoff 
+	- BW tunability only possible if you move Amplifier BW lower than upper corner freq (1/2pi*Rin*Csensor)=2.3GHz >> GBW (single pole system)
+	- measure VPOS_AFE noise on sensorized chip
+	vary: IBIAS_TAIL, VRESGATE_AVDD (reg)
+	- effect on classification
+
+	FIGS:
+		- VMODE:  input-referred noise vs ITAIL (measured vs simulated) + noise spectrum?
+		- //VMODE:  SER vs ITAIL (due to noise) 
+		- //IMODE:  SER vs ITAIL (due to noise)
+		- //IMODE:  SER at 2 values of VRESGATE_AVDD
+		- VMODE:  measured vs simulated spectrum of VPOS_AFE (THD vs input levels)
+		- IMODE:  simulated spectrum (with tones) at 2 values of VRESGATE_AVDD
+		- classification + ITC (+SER?) vs noise (@ max accuracy params)
+		- classification + ITC (+SER?) at 2 values of VRESGATE_AVDD (@ max accuracy params)
+
+
+	- THD of 1% for biomedical signals [Genco,JSSC23]
+- taxel mismatch (8/16 bonded channels)
+
+	FIGS: 
+		- VMODE: 
+
+- max out resolution (needs better PCB)
+- max out spike rate (needs FPGA + pin adapter)
+- CRF (fixed imode params?)
+	vary: HEM_RATIO (IN:OUT = 0 - 1:1; 1 - 2:1; 2 - 3:1; ... 15 - 16:1)
+	measure: HEM_OUT?
+
+
+	FIGS:
+		- IMODE:  spikes at different HEM_RATIO
+		- IMODE:  simulated current ratios vs HEM_RATIO
+		- IMODE:  HEM_OUT at different HEM_RATIO 
+
+- Power consumption
+- TSENSOR
+	FIGS: TSENSE vs temperature (multiple sensors - establish 3sigma?)
+	need extra board to wire DVDD, AVDD, ITAIL(?), TSENSE, AGND
+
+
+- noise on VPOS_CM 
+	-referred to Vout = VPOS_CM (1 + Zfb/Zin) - VPOS_CM (Zfb/Zin) = VPOS_CM
+
+- slayerperf_plot_Kylberg_chipclassifier.m
+-------------------------------------------------------
+
+Tasks B (compare with ideal input and real sensors)
+
+
+------------------------------------------------------
+Tasks C (possible with real sensors only)
+- poling setup + waveforms
+- FIB cross-section
+- taxel mismatch
+
+	FIGS:
+		- VMODE: spike rate per taxel at uniform pressure step (different forces)
+		- superimpose with normalized taxel firing rate for just 8/16 channels (indicate added mismatch due to sensors)
+
+
+- shape/texture classification
+
+	FIGS:
+		- classify acdg. to ideal spike params (from Ali Safa information-theoretic)
+
+- CRF for classification (effect of spatial configs)
+
+
+	FIGS:
+		- classify acdg. to ideal spike params (from Ali Safa information-theoretic)
+
+- Power consumption	
+
+Optional:
+- BMW action-condition
+- SNN hardware
+
+
+--------------------
+Add motivation at the beginning?
+- biological sensing
+- spikes vs frames - makes sense power-wise at low SNR
+- noise tolerance
+
+
+To-test
+- IMODE -> FPGA control
+- IMODE -> spike recording + CRF
+- VPOS_AFE tests -> gain response (with and without sensor CL), linearity (THD), noise
+- TSENSE
+- Actual sensor response -> shapes (show frames)
+- Taxel mismatch: sensor vs without
+
+- motivation: frames vs spikes (adaptive/power-efficient and fast sampling rate). Normalized Classification vs noise (white vs colored), mismatch, etc. Robust to systematic errors (static,dynamic errors, etc) -> all for area and power-efficiency
+- classifier results (VLSI)
+- re-do dataset?
+- gloves
+
+For tomorrow:
+- see result of bodeplot 50nA
+- check model spikes
+- run classifier on model spikes
+
+For rest of week:
+-additional figures for sensor?
+
+- setup teensy
+- imode
+- sensor testing

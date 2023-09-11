@@ -1,0 +1,60 @@
+wav = xlsread('poling_8inch_noCMP.xlsx')
+
+figure
+t = [0:1:6000-1]
+
+
+subplot(3,1,1)
+plot(t,wav(:,1))
+grid on;
+xlabel('Time (s)')
+ylabel('(V)')
+xlim([0 300])
+ylim([-30 30])
+title('Poling Voltage Waveform (One Period - 0.05Hz)')
+
+subplot(3,1,2)
+plot(t,wav(:,1))
+grid on;
+xlabel('Time (s)')
+ylabel('(V)')
+%xlim([0 300])
+title('Poling Voltage Waveform (Entire Duration)')
+
+subplot(3,1,3)
+plot(t,wav(:,2))
+
+xlabel('Time (s)')
+ylabel('(A)')
+title('Sensor Current')
+%xlim([0 300])
+ylim([-4e-9 4e-9])
+%set(gca,'YScale','log');
+
+micasplot
+set(gcf, 'Position', [100, 100, 800, 600]); saveas(gcf,['Poling-wav-noCMP.fig']); saveas(gcf,['Poling-wav-noCMP.png']);
+
+
+%% CMP
+wav_cmp = load('poling_8inch_CMP.txt')
+figure
+t = [0:1:6000-1]
+subplot(2,1,1)
+plot(t,wav_cmp(:,1))
+grid on;
+%xlabel('Time (s)')
+ylabel('(V)')
+%xlim([0 300])
+title('Poling Voltage Waveform (0.05Hz)')
+
+subplot(2,1,2)
+plot(t,wav_cmp(:,2))
+
+xlabel('Time (s)')
+ylabel('(A)')
+title('Sensor Current')
+%xlim([0 300])
+%set(gca,'YScale','log');
+ylim([-4e-9 4e-9])
+micasplot
+set(gcf, 'Position', [100, 100, 800, 600]); saveas(gcf,['Poling-wav-CMP.fig']); saveas(gcf,['Poling-wav-CMP.png']);

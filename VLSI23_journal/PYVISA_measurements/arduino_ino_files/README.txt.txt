@@ -1,0 +1,1 @@
+If you are weirded out, .ino files need to be on a directory with the same name as the <file.ino>
