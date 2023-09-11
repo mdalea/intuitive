@@ -1,0 +1,26 @@
+simulation:
+    Ts: 1         # ms - will be overwritten
+    tSample: 400  # ms - will be overwritten
+neuron:
+    type:     SRMALPHA
+    theta:    10
+    tauSr:    10
+    tauRef:   1
+    scaleRef: 2     # relative to theta
+    tauRho:   1     # relative to theta #0.43429448190325176
+    scaleRho: 1
+training:
+    error:
+        type: NumSpikes #NOT USED
+        probSlidingWin: 20  # NOT USED
+        tgtSpikeRegion: {start: 0, stop: 400}    # will be overwritten
+        tgtSpikeCount: {true: 100, false: 50}    # NOT USED, Cross-entropy loss is used
+    path:  # will be overwritten
+        # out:     OutFiles/
+        in:      /users/micas/malea/Documents/all_scripts-slayer/global_outfile/spikegen/ALL_N_apdsm-tau-small-sigma-taurefr-20-ms-0-uV-v2-0-uV-0-uV-0-pct-0-pct-0-pct-0.5-4-multitrial-LMT_filt_69--1to10-1to10_sorted/
+        train:   /users/micas/malea/Documents/all_scripts-slayer/global_outfile/spikegen/ALL_N_apdsm-tau-small-sigma-taurefr-20-ms-0-uV-v2-0-uV-0-uV-0-pct-0-pct-0-pct-0.5-4-multitrial-LMT_filt_69--1to10-1to10_sorted/train1K.txt
+        test:    /users/micas/malea/Documents/all_scripts-slayer/global_outfile/spikegen/ALL_N_apdsm-tau-small-sigma-taurefr-20-ms-0-uV-v2-0-uV-0-uV-0-pct-0-pct-0-pct-0.5-4-multitrial-LMT_filt_69--1to10-1to10_sorted/test100.txt
+
+
+
+

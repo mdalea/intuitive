@@ -1,0 +1,8 @@
+% dataset recording workflow
+clearvars
+load_dataset_arduino_12x16
+
+read_serial_spikes_dataset_12x16
+check_missing_recordings
+read_serial_spikes_dataset_12x16_missing
+auto_spikepreprocess
