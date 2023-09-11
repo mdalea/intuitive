@@ -2,7 +2,7 @@
 
 
 % Save waveform to CSV file
-csvFileName ='output\ID_sample_I2_4p7F_Cf_itail_100nA_noisepsd__psd_vout_fin_1_vpp_0.1_vofs_-0.09-0.csv' %'10hz-2mvppin-amp.csv'; %'noisepsd.csv';'10hz-2mvppin-amp-2.csv'; 
+csvFileName ='output\ID_sample_I2_itail_1nA_covered_noisepsd__psd_vout_fin_1_vpp_0.1_vofs_-0.06-0.csv' %'10hz-2mvppin-amp.csv'; %'noisepsd.csv';'10hz-2mvppin-amp-2.csv'; 
 waveform = csvread(csvFileName);
 
 psdEstimate = waveform(:,2)';

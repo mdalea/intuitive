@@ -33,7 +33,7 @@ import time
 debug = 1
 # Slow Settling time DC with light (booleans: 0 = False, 1 = True).
 # ---------------------------------------------------------
-light = 1
+light = 0
 # =========================================================
 # Initialize:
 # =========================================================
@@ -149,13 +149,13 @@ def capture(channel,fin,vamp,vofs,fsample,periods,f_lo):
 # =========================================================
 # Capture (FIXED timebase):
 # =========================================================
-def capture_fixed():
+def capture_fixed(fcapture):
 
 
     
     # Set horizontal scale and offset.
     #do_command(":TIMebase:SCALe 200e-6")   
-    do_command(f":TIMebase:SCALe {0.5/1}")   
+    do_command(f":TIMebase:SCALe {0.5/fcapture}")   
     
     qresult = do_query_string(":TIMebase:SCALe?")
     print("Timebase scale: %s" % qresult)
@@ -173,7 +173,7 @@ def set_smu(instr,vdd_net):
     if vdd_net == "avdd_lcvdd":
         volt=1
         volt_prot=1.8
-        ilimit=500e-6
+        ilimit=1000e-6
     elif vdd_net == "dvdd":
         volt=1
         volt_prot=1.8
@@ -241,7 +241,8 @@ def setup_wav(fin,fsample,periods,f_lo):
     #points=fsample*(1/fin)*periods
     points=fsample*(1/f_lo)*periods  #fixed no. of points to get 1 second windows
     do_command(f":ACQuire:POINts {points}")
-    do_command(":DIGitize")
+    Infiniium.write(":DIGitize")
+    
     
 # =========================================================
 # Setup Keysight MXR058A Oscilloscope
@@ -309,17 +310,20 @@ def analyze(channel,fin,vamp,vofs):
     do_command(":MEASure:VAMPlitude")
     qresult = do_query_string(":MEASure:VAMPlitude?")
     print("Measured vertical amplitude on channel %d: %s" % (channel, qresult))
-    '''
-    # Download the screen image.
-    # --------------------------------------------------------
-    screen_bytes = do_query_ieee_block(":DISPlay:DATA? PNG")
-    # Save display data values to file.
-    filename = 'output\ID_' + inst_id + '_ch_' + str(channel) + '_fin_' + str(fin) + '_vpp_' + str(vamp) + '_vofs_' + str(vofs) + '-' + str(run_id) +  '_image.png'
-    f = open(filename, "wb")
-    f.write(screen_bytes)
-    f.close()
-    print("Screen image written to screen_image.png.")
-    '''
+    
+    if channel==1:   # so as not to take screenshots everytime analyze is called for different channels
+        # Download the screen image.
+        # --------------------------------------------------------
+        screen_bytes = do_query_ieee_block(":DISPlay:DATA? PNG")
+        # Save display data values to file.
+        filename = 'output\ID_' + inst_id + '_ch_' + str(channel) + '_fin_' + str(fin) + '_vpp_' + str(vamp) + '_vofs_' + str(vofs) + '-' + str(run_id) +  '_image.png'
+        f = open(filename, "wb")
+        f.write(screen_bytes)
+        f.close()
+        print("Screen image written to screen_image.png.")
+    
+
+    
     # Download waveform data.
     # --------------------------------------------------------    
     # Get the waveform type.
@@ -446,19 +450,22 @@ def analyze(channel,fin,vamp,vofs):
 # =========================================================
 # Perform PSD using welch
 # =========================================================  
-def extract_power(channel,voltage_arr,fin,fsample,vamp,vofs):
+def extract_power(channel,voltage_arr,fin,fsample,vamp,vofs,f_lo):
 
-    windowTime = 1  #10*(1/fin) #lower BW = fin/10   #fin/10;
+    windowTime = 1/f_lo #1  #10*(1/fin) #lower BW = fin/10   #fin/10;
     windowSize = fsample * windowTime
     overlap = windowSize / 2
 
     '''
+    
+    # Save waveform data values to CSV file.
+    #f = open("waveform_data.csv", "w")
     if channel==1:
-        filename = 'output\ID_' + inst_id + '_wav_' + 'vout' + '_' + 'fin_' + str(fin) +  '_vpp_' + str(vamp) + '_vofs_' + str(vofs) + '-' + str(run_id) + '.csv'
+        filename = 'output\ID_' + inst_id + '_wav_' + 'vout' + '_' + 'fin_' + str(fin) + '_vpp_' + str(vamp) + '_vofs_' + str(vofs) + '-' + str(run_id) + '.csv'
     else:    
-        filename = 'output\ID_' + inst_id + '_wav_' + 'vin' + '_' + 'fin_' + str(fin) +  '_vpp_' + str(vamp) + '_vofs_' + str(vofs) + '-' + str(run_id) + '.csv'    
-    #f = open(filename, "w")
-    #wav = f.read()
+        filename = 'output\ID_' + inst_id + '_wav_' + 'vin' + '_' + 'fin_' + str(fin) +  '_vpp_' + str(vamp) + '_vofs_' + str(vofs) + '-' + str(run_id) +'.csv'    
+    f = open(filename, "w")
+    
     
     wav=[]
     with open(filename, 'r') as f:
@@ -471,11 +478,23 @@ def extract_power(channel,voltage_arr,fin,fsample,vamp,vofs):
 
     [freq, Pxx] = scipy.signal.welch(x=wav, fs=fsample,nperseg=windowSize, return_onesided=True,scaling='spectrum');
     '''  
+           
+    
     print(voltage_arr[:10])
     [freq, Pxx] = scipy.signal.welch(x=voltage_arr, fs=fsample,nperseg=windowSize, return_onesided=True,scaling='spectrum');    
     idx = np.where(freq==fin)
     Pxx_fin = 2*math.sqrt(2*Pxx[idx])
     print(f"Vout pk2pk {Pxx_fin}")
+    
+    if channel==1:
+        filename = 'output\ID_' + inst_id + '_val_' + 'voutpp' + '_' + 'fin_' + str(fin) + '_vpp_' + str(vamp) + '_vofs_' + str(vofs) + '-' + str(run_id) + '.csv'
+    else:    
+        filename = 'output\ID_' + inst_id + '_val_' + 'vinpp' + '_' + 'fin_' + str(fin) +  '_vpp_' + str(vamp) + '_vofs_' + str(vofs) + '-' + str(run_id) +'.csv'    
+    f = open(filename, "w")
+    f.write("%s\n" % Pxx_fin)
+    #Infiniium.write(":DISK:SAVE:WAV CHAN2,""waveform_data"",CSV,ON")
+    f.close()
+    print(f"Waveform PP data written to {filename}.")        
     
     return Pxx_fin
 # =========================================================
@@ -584,7 +603,7 @@ inst_id = sys.argv[1] + '_ofs_sweep_'
 #Infiniium = rm.open_resource("TCPIP0::141.121.231.13::hislip0::INSTR")
 rm = pyvisa.ResourceManager();
 Infiniium = rm.open_resource("USB0::0x2A8D::0x9007::MY61190114::INSTR")
-Infiniium.timeout = 20000
+Infiniium.timeout = 200000 # for 7.5Msamples
 Infiniium.clear()
 
 RigolDG3061A = rm.open_resource("USB0::0x1AB1::0x0588::DG3G114600735::INSTR")
@@ -604,13 +623,13 @@ time.sleep(20) #allow for everything to settle after running
 # Initialize the oscilloscope, capture data, and analyze.
 #initialize()
 #capture()
-fsample=500e3
+fsample=10e3
 periods=10*1.5 #for overlapping 10 windows (50%)
 fin=10
 f_lo=1 # freq bin/lower cutoff 
 
 #ATTENUATOR 100x and INVERTED
-vamp=100e-3
+vamp=50e-3 # prevent distortion on output
 vofs=10e-3
 
 start_vofs = float(sys.argv[3]) #-200e-3 #-200e-3
@@ -640,18 +659,19 @@ for run_id in range(0,int(sys.argv[2])): # perform N runs for averaging
             time.sleep(15*60) # takes 15 minutes to settle!!!
         
         #capture(fin)
-        capture(1,fin, vamp, vofs, fsample,periods,f_lo) # autoset horizontal levels, and capture waveform. Interferes with # of points
+        #IMPT: capture causes timeout error for some reason
+        #capture(1,fin, vamp, vofs, fsample,periods,f_lo) # autoset horizontal levels, and screenshot waveform. Interferes with # of points              
         #do_command(":RUN")
         #do_command(":SING")    
-        capture_fixed()       
+        capture_fixed(1)       # keep # of points acquired fixed; capture all waveform screenshots at fixed TIMESCALE
 
         iq=meas_smu(KeysightB2061A,"avdd_lcvdd") # record Iq
         capture_tsense(3,fin, vamp, vofs)  # record die temp through TSENSE
         setup_wav(fin,fsample,periods,f_lo)  # setup sampling rate and no. of points
         time_arr_out, voltage_arr_out = analyze(1,fin, vamp, vofs)  # capture screenshot, save csv, and other things
         time_arr_in, voltage_arr_in = analyze(2,fin, vamp, vofs)
-        vout_pk2pk = extract_power(1,voltage_arr_out,fin,fsample, vamp, vofs)  # extract power at fin
-        vin_pk2pk = extract_power(2,voltage_arr_in,fin,fsample, vamp, vofs)
+        vout_pk2pk = extract_power(1,voltage_arr_out,fin,fsample, vamp, vofs, f_lo)  # extract power at fin
+        vin_pk2pk = extract_power(2,voltage_arr_in,fin,fsample, vamp, vofs, f_lo)  
         
         vofs_arr.append(vofs)
         gain_t = vout_pk2pk / vin_pk2pk

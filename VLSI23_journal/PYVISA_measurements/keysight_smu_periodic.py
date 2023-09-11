@@ -14,6 +14,8 @@ import csv
 import numpy as np
 import math
 import time
+from datetime import datetime
+import matplotlib.pyplot as plt
 
 # Global variables (booleans: 0 = False, 1 = True).
 # ---------------------------------------------------------
@@ -194,14 +196,44 @@ KeysightB2061A = rm.open_resource("USB0::0x0957::0xCD18::MY51143471::INSTR")
 KeysightB2061A.timeout = 200000
 KeysightB2061A.clear()
 
-set_smu(KeysightB2061A,1,10000e-6)  # 500uA for LCS, 1mA for NLCS
-iq=meas_smu(KeysightB2061A)
 
-print(iq)
-iq_per_taxel = float(iq)/192
-print(iq_per_taxel)
+set_smu(KeysightB2061A,1,2000e-6)  # 500uA for LCS, 1mA for NLCS
+    
+iq_array=[]
+time_array=[]
 
-print("VLSI value per taxel is 12.33e-9\n")
+mins=10
+start_time=time.time()
+end_time=start_time+ mins*60
+
+#if IPOS dominated, hem has 3x current of normal taxel - 24 hems
+#divisor = (192-24) + 24*3 = 240 
+while time.time() < end_time:
+
+    iq=meas_smu(KeysightB2061A)
+    print(iq)
+    iq_per_taxel = float(iq)/192
+    #iq_per_taxel = float(iq)/240
+    print(iq_per_taxel)
+
+    print("VLSI value per taxel is 12.33e-9\n")
+    iq_array.append(iq_per_taxel)
+    time_array.append(time.time() - start_time)
+    
+    time.sleep(1)
+
+timestamp=datetime.now().strftime("%Y-%m-%d_%H-%M-%S")    
+iq_array=np.array(iq_array)
+time_array=np.array(time_array)
+combined_data=np.column_stack((time_array,iq_array))
+
+np.savetxt(f"output\iq_array_{timestamp}.csv",combined_data,delimiter=",",header="Time,Iq")    
+
+plt.plot(time_array,iq_array,marker='o')
+plt.xlabel('Time (s)')
+plt.ylabel('Iq (AVDD+LCVDD)')
+plt.grid(True)
+plt.show()
     
 KeysightB2061A.close()
 print("End of program.")

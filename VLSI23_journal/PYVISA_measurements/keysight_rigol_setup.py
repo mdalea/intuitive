@@ -51,7 +51,7 @@ def initialize():
 # =========================================================
 # Capture:
 # =========================================================
-def capture(channel,fin,vamp,vofs,fsample,periods,f_lo):
+def capture(fin,vamp,vofs,fsample,periods,f_lo,shape):
 
     '''
     # Set probe attenuation factor.
@@ -139,7 +139,7 @@ def capture(channel,fin,vamp,vofs,fsample,periods,f_lo):
     # --------------------------------------------------------
     screen_bytes = do_query_ieee_block(":DISPlay:DATA? PNG")
     # Save display data values to file.
-    filename = 'output\ID_' + inst_id + '_ch_' + str(channel) + '_fin_' + str(fin) + '_vpp_' + str(vamp) + '_vofs_' + str(vofs) + '-' + str(run_id) +  '_image.png'
+    filename = 'output\ID_' + inst_id + '_' + shape + '_fin_' + str(fin) + '_vpp_' + str(vamp) + '_vofs_' + str(vofs) + '-' +  '_image.png'
     f = open(filename, "wb")
     f.write(screen_bytes)
     f.close()
@@ -173,7 +173,7 @@ def set_smu(instr,vdd_net):
     if vdd_net == "avdd_lcvdd":
         volt=1
         volt_prot=1.8
-        ilimit=1000e-6
+        ilimit=2000e-6
     elif vdd_net == "dvdd":
         volt=1
         volt_prot=1.8
@@ -207,26 +207,10 @@ def set_smu(instr,vdd_net):
 def meas_smu(instr,vdd_net):   
     #do_command_other(instr,":MEAS:CURR? (@1)") 
     do_command_other(instr, ":MEAS:CURR?")
-    iq = instr.read()
-    
-    # Save Iq data values to CSV file.
-    filename = 'output\ID_' + inst_id + '_iq_' + vdd_net + '_fin_' + str(fin) + '_vpp_' + str(vamp) + '_vofs_' + str(vofs) + '-' + str(run_id) +  '.csv'
-    f = open(filename, "w")
-    f.write("%s\n" % iq)
-    #Infiniium.write(":DISK:SAVE:WAV CHAN2,""waveform_data"",CSV,ON")
-    f.close()
-    print(f"Waveform format BYTE data written to {filename}.")       
-    
-    # Save Iq data values to CSV file.
-    filename = 'output\ID_' + inst_id + '_iq_per_taxel_' + vdd_net + '_fin_' + str(fin) + '_vpp_' + str(vamp) + '_vofs_' + str(vofs) + '-' + str(run_id) +  '.csv'
-    f = open(filename, "w")
-    iq_per_taxel = float(iq)/192
-    f.write("%s\n" % iq_per_taxel)
-    #Infiniium.write(":DISK:SAVE:WAV CHAN2,""waveform_data"",CSV,ON")
-    f.close()
-    print(f"Waveform format BYTE data written to {filename}.")         
+    iq = instr.read()     
     
     print(f"Iq: {iq}")
+    iq_per_taxel = float(iq)/193
     print(f"Iq per taxel: {iq_per_taxel}")
     
     return iq    
@@ -256,8 +240,8 @@ def init_siggen(instr):
     do_command_other(instr,"OUTP:LOAD INF") #high-Z
     time.sleep(2) 
     
-def setup_siggen(instr, fin, vamp, vofs):
-    do_command_other(instr,"FUNC SIN") #sine wave
+def setup_siggen(instr, fin, vamp, vofs, shape):
+    do_command_other(instr,f"FUNC {shape}") #sine wave
     time.sleep(2)
     do_command_other(instr,f"FREQ +{fin}")  
     time.sleep(2)    
@@ -593,58 +577,7 @@ def do_command_other(instr, command, hide_params=False):
 # =========================================================
 # Main program:
 # =========================================================
-
-inst_id = sys.argv[1] + '_thd_vamp_sweep_'
-if sys.argv[3]=="-": # custom vofs (without looking at previous vofs sweep)
-    #vofs=-165e-3
-    vofs = float(sys.argv[7])
-    print(f"CUSTOM vofs value: {vofs}")
-else:
-    csv_file_path = 'output\ID_' + sys.argv[1]  + '_ofs_sweep__gain_vs_vofsin_sweep' + '-' + str(0) + '.csv'
-    # Read the first CSV file to determine the number of runs (number of rows)
-    with open(csv_file_path, 'r') as f:
-        reader = csv.reader(f, delimiter=',')
-        num_runs = sum(1 for _ in reader)
-
-
-    num_prev_run_ids = int(sys.argv[3])
-    # Initialize a 2D NumPy array to store gains for each prev_run_id
-    gains_array = np.zeros((num_prev_run_ids, num_runs))
-    vofs_array = np.zeros((num_runs))
-
-    # Loop over prev_run_ids and perform N runs for averaging
-    for prev_run_id in range(num_prev_run_ids):
-        # Specify the CSV file path
-        csv_file_path = f'output\ID_{sys.argv[1]}_ofs_sweep__gain_vs_vofsin_sweep-{prev_run_id}.csv'
-
-        # Read the gains from the CSV file and append them to the respective prev_run_id column
-        with open(csv_file_path, 'r') as f:
-            reader = csv.reader(f, delimiter=',')
-            
-            # Skip the first line (header) of the CSV file
-            next(reader)
-            for row_idx, row in enumerate(reader):
-                #print(row[3])
-                gain_value = float(row[3])  # row 3 is Gain
-                gains_array[prev_run_id, row_idx] = gain_value
-                vofs_array[row_idx] = float(row[0]) # row 0 is offset
-
-    print(gains_array)
-    # Calculate the average gain over all columns (prev_run_ids)
-    average_gain = np.mean(gains_array, axis=0)
-    print(average_gain)
-    # Find the index of the maximum average_gain value
-    max_index = np.argmax(average_gain)
-    print(vofs_array)
-    # Get optimal Vofs
-    vofs = vofs_array[max_index]
-
-    # Print the index and corresponding average_gain value
-    print(f"Index of max average_gain: {max_index}")
-    print(f"Max average_gain value: {average_gain[max_index]}")
-    print(f"Optimal vofs value: {vofs}")
-
-#-----------------------------
+inst_id = '_rigol_setup_'
 
 #rm = pyvisa.ResourceManager("C:\\Windows\\System32\\visa64.dll")
 #Infiniium = rm.open_resource("TCPIP0::141.121.231.13::hislip0::INSTR")
@@ -661,90 +594,24 @@ KeysightB2061A.timeout = 200000
 KeysightB2061A.clear()
 
 set_smu(KeysightB2061A,"avdd_lcvdd") # turn on SMU
+iq=meas_smu(KeysightB2061A,"avdd_lcvdd")  # record Iq
 
 init_siggen(RigolDG3061A)  # turn on siggen
 
+fin=0.1
+vamp=500e-3
+vofs=250e-3
+fsample=1e6
+f_lo=1
+periods=10
+shape="RAMP"
+
+setup_siggen(RigolDG3061A, fin, vamp, vofs, shape)
+
 time.sleep(20) #allow for everything to settle after running
 
-
-# Initialize the oscilloscope, capture data, and analyze.
-#initialize()
-#capture()
-fsample=500e3 #better matches white noise simulation
-periods=10*1.5 #for overlapping 10 windows (50%)
-fin=10
-f_lo=1 # freq bin/lower cutoff 
-
-#ATTENUATOR 100x and INVERTED
-#vamp=100e-3
-
-start_vamp = float(sys.argv[4]) # 100e-6 - x100 attenuation
-end_vamp = float(sys.argv[5]) # 10e-3 - x100 attenuation
-step_size = float(sys.argv[6]) #2e-3 - x100 attenuation
-
-for run_id in range(0,int(sys.argv[2])): # perform N runs for averaging
-    vamp_arr = []
-    vout_thd_arr = []
-    vin_thd_arr = []    
-    for vamp in range(int(start_vamp * 10000), int(end_vamp * 10000) + 1, int(step_size * 10000)):
-        vamp = vamp / 10000.0
-        # Your code to process 'vofs' goes here
-        # For example, you can print the current value of 'vofs'
-        print("---------------------")    
-        print(vamp)
-
-        setup_siggen(RigolDG3061A, fin, vamp, vofs)
-        if vamp==start_vamp: # initial voffset settings
-            print("First amplitude point so offset has just been set, perhaps let's wait for DC levels to settle (~10secs)...")    
-            time.sleep(15*60)       
-        
-        #print("Waiting for DC levels to settle (~15mins)...")
-        if light == 1:
-            print("Waiting for DC levels to settle (~10secs)...")    
-            time.sleep(10) # takes 15 minutes to settle!!!    
-        else:
-            print("Waiting for DC levels to settle (~15mins)...")    
-            time.sleep(15*60) # takes 15 minutes to settle!!!
-        
-        #capture(fin)
-        #IMPT: capture causes timeout error for some reason
-        #capture(1,fin, vamp, vofs,fsample,periods,f_lo) # autoset horizontal levels, and screenshot waveform. Interferes with # of points
-        #do_command(":RUN")
-        #do_command(":SING")      
-        
-        capture_fixed(1)   # keep # of points acquired fixed; capture all waveform screenshots at fixed TIMESCALE
-
-
-        iq=meas_smu(KeysightB2061A,"avdd_lcvdd") # record Iq
-        capture_tsense(3,fin, vamp, vofs)  # record die temp through TSENSE
-        setup_wav(fin,fsample,periods,f_lo)  # setup sampling rate and no. of points
-        time_arr_out, voltage_arr_out = analyze(1,fin, vamp, vofs)  # capture screenshot, save csv, and other things
-        time_arr_in, voltage_arr_in = analyze(2,fin, vamp, vofs)
-        vout_thd = extract_power_thd(1,voltage_arr_out,fin,fsample, vamp, vofs, f_lo)  # extract power at fin
-        vin_thd = extract_power_thd(2,voltage_arr_in,fin,fsample, vamp, vofs, f_lo)
-        
-        vamp_arr.append(vamp)
-        vout_thd_arr.append(vout_thd)
-        vin_thd_arr.append(vin_thd)     
-        
-    print(vamp_arr)
-    print(vout_thd_arr)
-    print(vin_thd_arr)
-
-
-    # Zip the arrays to align them row-wise
-    rows = zip(vamp_arr, vout_thd_arr, vin_thd_arr)
-
-    # Specify the CSV file path
-    csv_file_path = 'output\ID_' + inst_id + '_thd_vs_vamp_sweep' + '-' + str(run_id) + '.csv'
-
-    # Write the data to the CSV file
-    with open(csv_file_path, 'w', newline='') as csvfile:
-        csv_writer = csv.writer(csvfile)
-        csv_writer.writerow(['vamp',  'vout_thd' , 'vin_thd'])  # Write the header row
-        csv_writer.writerows(rows)
-
-    print(f"The data has been written to '{csv_file_path}'.")
+capture_fixed(fin)
+capture(fin,vamp,vofs,fsample,periods,f_lo,shape)
     
 Infiniium.close()
 RigolDG3061A.close()

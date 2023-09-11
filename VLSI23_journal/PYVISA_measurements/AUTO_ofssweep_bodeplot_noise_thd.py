@@ -72,6 +72,6 @@ os.system(f"python.exe keysight_rigol_gain_freqsweep.py {inst_id}_itail_100nA 3 
 #os.system(f"python.exe keysight_rigol_noise_psd.py {inst_id}_itail_10nA 1 3")
 #os.system(f"python.exe keysight_rigol_noise_psd.py {inst_id}_itail_100nA 1 3")
 
-os.system(f"python.exe keysight_rigol_thd.py {inst_id}_itail_1nA 1 3 10e-3 1000e-3 100e-3")
-os.system(f"python.exe keysight_rigol_thd.py {inst_id}_itail_10nA 1 3 10e-3 1000e-3 100e-3")
-os.system(f"python.exe keysight_rigol_thd.py {inst_id}_itail_100nA 1 3 10e-3 1000e-3 100e-3")
+os.system(f"python.exe keysight_rigol_thd.py {inst_id}_itail_1nA 1 3 20e-3 500e-3 20e-3") # 20mVpp minimum sig gen output
+os.system(f"python.exe keysight_rigol_thd.py {inst_id}_itail_10nA 1 3 20e-3 500e-3 20e-3")
+os.system(f"python.exe keysight_rigol_thd.py {inst_id}_itail_100nA 1 3 20e-3 500e-3 20e-3")

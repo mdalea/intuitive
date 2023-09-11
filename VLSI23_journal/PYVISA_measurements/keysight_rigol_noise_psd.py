@@ -168,7 +168,7 @@ def set_smu(instr,vdd_net):
     if vdd_net == "avdd_lcvdd":
         volt=1
         volt_prot=1.8
-        ilimit=500e-6
+        ilimit=1000e-6
     elif vdd_net == "dvdd":
         volt=1
         volt_prot=1.8
@@ -626,7 +626,8 @@ def do_command_other(instr, command, hide_params=False):
 
 inst_id = sys.argv[1] + '_noisepsd_'
 if sys.argv[3]=="-": # custom vofs (without looking at previous vofs sweep)
-    vofs=-165e-3
+    #vofs=-165e-3
+    vofs = float(sys.argv[4])
     print(f"CUSTOM vofs value: {vofs}")
 else:
     csv_file_path = 'output\ID_' + sys.argv[1]  + '_ofs_sweep__gain_vs_vofsin_sweep' + '-' + str(0) + '.csv'
@@ -715,6 +716,10 @@ for run_id in range(0,int(sys.argv[2])): # perform N runs for averaging
     print(f"Run # {run_id}\n")
 
     setup_siggen(RigolDG3061A, fin, vamp, vofs) 
+    if run_id==0: # initial voffset settings
+        print("First sig gen setting so offset has just been set, perhaps let's wait for DC levels to settle (~10secs)...")    
+        time.sleep(15*60)    
+        
     if light == 1:
         print("Waiting for DC levels to settle (~10secs)...")    
         time.sleep(10) # takes 10 secs to settle!!!    

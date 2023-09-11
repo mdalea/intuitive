@@ -42,10 +42,35 @@ def set_smu(instr,volt,ilimit):
     
     do_command_other(instr,":SENS:FUNC ""CURR""")    
     do_command_other(instr,":SENS:CURR:RANG:AUTO ON")
-    do_command_other(instr,":SENS:CURR:APER 4") # 2 seconds averaging
+    do_command_other(instr,":SENS:CURR:APER 2") # 2 seconds averaging
     do_command_other(instr,f":SENS:CURR:PROT {ilimit}") # 500 uA ilimit
     do_command_other(instr,":OUTP ON")    
 
+# =========================================================
+# Setup SMU:
+# =========================================================    
+def set_smu_wav(instr,ilimit,wav,fs):
+    do_command_other(instr,":SOUR:FUNC:MODE VOLT")
+    do_command_other(instr,f":SOUR:VOLT 0")
+
+    do_command_other(instr,":OUTP ON")    
+    for sample in wav:
+        prev_time=time.time()
+        do_command_other(instr,":SOUR:FUNC:MODE VOLT")
+        do_command_other(instr,f":SOUR:VOLT {sample}")
+        #do_command_other(instr,":SENS:VOLT:PROT 1.8") # 500 uA ilimit    
+        
+        do_command_other(instr,":SENS:FUNC ""CURR""")    
+        do_command_other(instr,":SENS:CURR:RANG:AUTO ON")
+        do_command_other(instr,":SENS:CURR:APER {1/fs}") # 2 seconds averaging
+        do_command_other(instr,f":SENS:CURR:PROT {ilimit}") # 500 uA ilimit 
+        
+        time.sleep(1/fs);
+        
+        print("elapsed time: ",time.time() - prev_time, " s")
+
+    do_command_other(instr,":OUTP OFF")    
+    
 # =========================================================
 # Measure Iq
 # =========================================================    
@@ -194,7 +219,28 @@ KeysightB2061A = rm.open_resource("USB0::0x0957::0xCD18::MY51143471::INSTR")
 KeysightB2061A.timeout = 200000
 KeysightB2061A.clear()
 
-set_smu(KeysightB2061A,1,10000e-6)  # 500uA for LCS, 1mA for NLCS
+# Parameters
+fs = 1000       # Sampling frequency in Hz
+duration = 300  # Duration in seconds
+cycles = 15     # Number of cycles of the sinusoid
+amplitude_max = 25  # Maximum amplitude in volts
+
+# Time values
+t = np.linspace(0, duration, int(fs * duration))
+
+# Generate the sinusoidal waveform
+sinusoid = []
+for _ in range(10):
+    for _ in range(cycles):
+        amplitude = np.linspace(0, amplitude_max, len(t))
+        waveform = amplitude * np.sin(2 * np.pi * 0.05 * t)
+        sinusoid.extend(waveform)
+    
+    zero_period = np.zeros(int(fs * duration))
+    sinusoid.extend(zero_period)
+
+
+set_smu_wav(KeysightB2061A,500e-6)
 iq=meas_smu(KeysightB2061A)
 
 print(iq)

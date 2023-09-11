@@ -173,7 +173,7 @@ def set_smu(instr,vdd_net):
     if vdd_net == "avdd_lcvdd":
         volt=1
         volt_prot=1.8
-        ilimit=500e-6
+        ilimit=1000e-6
     elif vdd_net == "dvdd":
         volt=1
         volt_prot=1.8
@@ -468,8 +468,8 @@ def find_indices(freq, fin, tolerance):
 # Perform PSD using welch
 # =========================================================  
 def extract_power(channel,voltage_arr,fin,fsample,vamp,vofs,f_lo):
-
-    windowTime = 1/f_lo #1 #(1/fin) #lower BW = fin/10   #fin/10; 
+        
+    windowTime = 1/f_lo    
     windowSize = fsample * windowTime
     overlap = windowSize / 2
 
@@ -500,6 +500,16 @@ def extract_power(channel,voltage_arr,fin,fsample,vamp,vofs,f_lo):
     Pxx_peak = max(Pxx[idx])
     Pxx_fin = 2*math.sqrt(2*Pxx_peak)
     print(f"Vout pk2pk {Pxx_fin}")
+    
+    if channel==1:
+        filename = 'output\ID_' + inst_id + '_val_' + 'voutpp' + '_' + 'fin_' + str(fin) + '_vpp_' + str(vamp) + '_vofs_' + str(vofs) + '-' + str(run_id) + '.csv'
+    else:    
+        filename = 'output\ID_' + inst_id + '_val_' + 'vinpp' + '_' + 'fin_' + str(fin) +  '_vpp_' + str(vamp) + '_vofs_' + str(vofs) + '-' + str(run_id) +'.csv'    
+    f = open(filename, "w")
+    f.write("%s\n" % Pxx_fin)
+    #Infiniium.write(":DISK:SAVE:WAV CHAN2,""waveform_data"",CSV,ON")
+    f.close()
+    print(f"Waveform PP data written to {filename}.")           
     
     return Pxx_fin
 # =========================================================
@@ -626,7 +636,8 @@ print(sys.argv[1])
 
 
 if sys.argv[3]=="-": # custom vofs (without looking at previous vofs sweep)
-    vofs=-165e-3
+    #vofs=-165e-3
+    vofs = float(sys.argv[7])
     print(f"CUSTOM vofs value: {vofs}")
 else:
     csv_file_path = 'output\ID_' + sys.argv[1]  + '_ofs_sweep__gain_vs_vofsin_sweep' + '-' + str(0) + '.csv'
@@ -679,7 +690,8 @@ else:
 #Infiniium = rm.open_resource("TCPIP0::141.121.231.13::hislip0::INSTR")
 rm = pyvisa.ResourceManager();
 Infiniium = rm.open_resource("USB0::0x2A8D::0x9007::MY61190114::INSTR")
-Infiniium.timeout = 200000 # for 7.5Msamples
+#Infiniium.timeout = 200000 # for 7.5Msamples
+Infiniium.timeout = 2000000 # for 75Msamples?
 Infiniium.clear()
 
 RigolDG3061A = rm.open_resource("USB0::0x1AB1::0x0588::DG3G114600735::INSTR")
@@ -704,10 +716,10 @@ initialize()
 fsample=500e3 #better matches white noise simulation
 periods=10*1.5 #for overlapping 10 windows (50%)
 #fin=10
-f_lo=1 # freq bin/lower cutoff 
+f_lo=0.1 # freq bin/lower cutoff 
 
 #ATTENUATOR 100x and INVERTED
-vamp=50e-3 # prevent distortion on output
+vamp=100e-3 # prevent distortion on output
         
 #vofs=-90e-3 # obtained from sweep
 
@@ -739,6 +751,10 @@ for run_id in range(0,int(sys.argv[2])): # perform N runs for averaging
         print(fin)
 
         setup_siggen(RigolDG3061A, fin, vamp, vofs)
+        if fin==startfreq: # initial voffset settings
+            print("First frequency point so offset has just been set, perhaps let's wait for DC levels to settle (~10secs)...")    
+            time.sleep(15*60)
+        
         if light == 1:
             print("Waiting for DC levels to settle (~10secs)...")    
             time.sleep(10) # takes 15 minutes to settle!!!    
@@ -751,11 +767,18 @@ for run_id in range(0,int(sys.argv[2])): # perform N runs for averaging
         #capture(1,fin, vamp, vofs,fsample,periods,f_lo) # autoset horizontal levels, and screenshot waveform. Interferes with # of points
         #do_command(":RUN")
         #do_command(":SING")      
+
+        # piece-wise f_lo to speed up acquisition. Perform before capture_fixed, setup_wav and extract_power
+        if fin < 1:
+            f_lo = f_lo #for very low fin     
+        else:
+            f_lo = 1 # speed up extraction   
         
-        capture_fixed(1)   # keep # of points acquired fixed; capture all waveform screenshots at fixed TIMESCALE
+        capture_fixed(f_lo)   # keep # of points acquired fixed; capture all waveform screenshots at fixed TIMESCALE
 
         iq=meas_smu(KeysightB2061A,"avdd_lcvdd")  # record Iq
-        capture_tsense(3,fin, vamp, vofs)  # record die temp through TSENSE
+        capture_tsense(3,fin, vamp, vofs)  # record die temp through TSENSE             
+        
         setup_wav(fin,fsample,periods,f_lo) # setup sampling rate and no. of points
         time_arr_out, voltage_arr_out = analyze(1,fin, vamp, vofs)  # capture screenshot, save csv, and other things
         time_arr_in, voltage_arr_in = analyze(2,fin, vamp, vofs)

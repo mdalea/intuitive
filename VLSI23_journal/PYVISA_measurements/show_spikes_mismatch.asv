@@ -1,0 +1,109 @@
+%% plot taxel mismatch by applying voltage on VTOP
+close all
+
+folderPath = pwd;
+name = 'mismatch_N4b_itail_50nA_islew_1u_ramp_0p1Hz_1000mVpp_MAXSPIKES_800-2023-09-03_17-22-53_sorted';
+trial=1;
+
+filename = [folderPath,'/for_paper/SPIKES_CLSENSOR_MISMATCH/',name,'/',num2str(trial),'.bs2']
+TD = Read_Ndataset_longTs(filename);
+
+TD.x = TD.x(TD.ts>4000000);
+TD.y = TD.y(TD.ts>4000000);
+TD.p = TD.p(TD.ts>4000000);
+TD.ts = TD.ts(TD.ts>4000000);
+
+edges=8;
+
+figure
+subplot(2,1,1)
+hold all;
+frame_data_on=zeros(12,16); frame_data_off=zeros(12,16);
+for spikeCount = 1:length(TD.ts)
+    if TD.p(spikeCount)==1  % ON spike
+        plot([TD.ts(spikeCount)/1e6 TD.ts(spikeCount)/1e6], ...
+            [xytolin_customxy(TD.x(spikeCount),TD.y(spikeCount),16)-0.4 xytolin_customxy(TD.x(spikeCount),TD.y(spikeCount),16)+0.4], 'k');
+            frame_data_on(TD.y(spikeCount)+1,TD.x(spikeCount)+1) = frame_data_on(TD.y(spikeCount)+1,TD.x(spikeCount)+1) + 1 % accumulate spikes per address
+    else   % OFF spike
+       plot([TD.ts(spikeCount)/1e6 TD.ts(spikeCount)/1e6], ...
+            [xytolin_customxy(TD.x(spikeCount),TD.y(spikeCount),16)-0.4 xytolin_customxy(TD.x(spikeCount),TD.y(spikeCount),16)+0.4], 'k','Color','red');
+            frame_data_off(TD.y(spikeCount)+1,TD.x(spikeCount)+1) = frame_data_off(TD.y(spikeCount)+1,TD.x(spikeCount)+1) + 1 % accumulate spikes per address
+    end 
+end
+hold off;
+grid on
+xlabel('Time (s)');
+ylabel('Taxel Number');
+title('a)')
+
+TD_on = []; TD_off=[];
+
+TD_on.x = TD.x(TD.p==1);
+TD_on.y = TD.y(TD.p==1);
+TD_on.p = TD.p(TD.p==1);
+TD_on.ts = TD.ts(TD.p==1);
+
+TD_off.x = TD.x(TD.p==2);
+TD_off.y = TD.y(TD.p==2);
+TD_off.p = TD.p(TD.p==2);
+TD_off.ts = TD.ts(TD.p==2);
+
+
+%figure
+%subplot(1,2,1)
+%h1=histogram(frame_data_on,50);
+%hold on;
+%h2=histogram(frame_data_off,50);
+
+%xlabel('# events / taxel')
+%ylabel('# of taxels')
+%title('b)')
+
+%legend([h1 h2],['ON spikes'],['OFF spikes'],'Location','northeast')
+
+%micasplot
+
+
+%% Similar to Lichtsteiner paper
+
+
+tbins=[2.5:5:82.5]*1e6;
+frame_bin_on = zeros(length(tbins)-1,12,16);
+frame_bin_off = zeros(length(tbins)-1,12,16);
+
+for i=1:length(tbins)-1
+    TD_filt.x = TD.x(TD.ts > tbins(i) & TD.ts < tbins(i+1));
+    TD_filt.y = TD.y(TD.ts > tbins(i) & TD.ts < tbins(i+1));
+    TD_filt.p = TD.p(TD.ts > tbins(i) & TD.ts < tbins(i+1));
+    TD_filt.ts = TD.ts(TD.ts > tbins(i) & TD.ts < tbins(i+1));
+    for spikeCount = 1:length(TD_filt.ts)
+        if TD_filt.p(spikeCount)==1  % ON spike
+                frame_bin_on(i,TD_filt.y(spikeCount)+1,TD_filt.x(spikeCount)+1) = frame_data_on(TD_filt.y(spikeCount)+1,TD_filt.x(spikeCount)+1) + 1 % accumulate spikes per address
+        else   % OFF spike
+                frame_bin_off(i,TD_filt.y(spikeCount)+1,TD_filt.x(spikeCount)+1) = frame_data_off(TD_filt.y(spikeCount)+1,TD_filt.x(spikeCount)+1) + 1 % accumulate spikes per address
+        end 
+    end
+end    
+
+subplot(2,1,2)
+%subplot(4,1,3)
+h1=histogram(nonzeros(frame_bin_on),15);
+%h1=histogram(frame_bin_on,15);
+%xlabel('# events / taxel / edge - ON spikes');
+hold on
+%subplot(4,1,4)
+h2=histogram(nonzeros(frame_bin_off),20);
+%h2=histogram(frame_bin_off,20);
+%xlabel('# events / taxel / edge - OFF spikes');
+xlabel('# events / taxel / edge');
+ylabel('# taxels over 8 periods')
+%legend([h1 h2],['ON spikes'],['OFF spikes'],'Location','northeast')
+
+micasplot
+
+% Set the width and height of the figure (in pixels)
+width = 800;    % Specify your desired width here
+height = 400;   % Specify your desired height here
+set(gcf, 'Position', [100, 100, width, height]);
+saveas(gcf,[folderPath,'/for_paper/SPIKES_CLSENSOR_MISMATCH/',name,'.fig'])
+saveas(gcf,[folderPath,'/for_paper/SPIKES_CLSENSOR_MISMATCH/',name,'.png'])
