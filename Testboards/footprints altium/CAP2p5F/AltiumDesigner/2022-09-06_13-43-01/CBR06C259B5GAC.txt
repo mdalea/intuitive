@@ -1,0 +1,139 @@
+# Created by Ultra Librarian Gold 8.3.307 Copyright © 1999-2021
+# Frank Frank, Accelerated Designs
+
+StartFootprints
+
+Footprint (Name "CAPC17090_87N_KEM")
+Pad (Name "1") (Location -27.55901909, 0) (Surface True) (Rotation 0) (ExpandMask 0) (ExpandPaste 0)
+PadShape (Size 39.37002945, 35.43299866) (Shape Rectangular) (Layer Top)
+EndPad
+Pad (Name "2") (Location 27.55901909, 0) (Surface True) (Rotation 0) (ExpandMask 0) (ExpandPaste 0)
+PadShape (Size 39.37002945, 35.43299866) (Shape Rectangular) (Layer Top)
+EndPad
+Line (Width 6) (Start -57.24404907, -27.71649933) (End -57.24404907, 27.71649933) (Layer Mechanical15) 
+Line (Width 6) (Start -57.24404907, 27.71649933) (End 57.24404907, 27.71649933) (Layer Mechanical15) 
+Line (Width 6) (Start 57.24404907, 27.71649933) (End 57.24404907, -27.71649933) (Layer Mechanical15) 
+Line (Width 6) (Start 57.24404907, -27.71649933) (End -57.24404907, -27.71649933) (Layer Mechanical15) 
+Polygon (PointCount 4) (Layer Mechanical15) 
+Point (-57.24404907, -27.71649933)
+Point (-57.24404907, 27.71649933)
+Point (57.24404907, 27.71649933)
+Point (57.24404907, -27.71649933)
+EndPolygon
+Polygon (PointCount 4) (Layer Mechanical5) 
+Point (-62.24404907, -32.71649933)
+Point (-62.24404907, 32.71649933)
+Point (62.24404907, 32.71649933)
+Point (62.24404907, -32.71649933)
+EndPolygon
+Line (Width 1) (Start -11.81099987, -17.71649933) (End -11.81099987, 17.71649933) (Layer Mechanical13) 
+Line (Width 1) (Start -11.81099987, 17.71649933) (End -33.46450043, 17.71649933) (Layer Mechanical13) 
+Line (Width 1) (Start -33.46450043, 17.71649933) (End -33.46450043, -17.71649933) (Layer Mechanical13) 
+Line (Width 1) (Start -33.46450043, -17.71649933) (End -11.81099987, -17.71649933) (Layer Mechanical13) 
+Line (Width 1) (Start 11.81099987, 17.71649933) (End 11.81099987, -17.71649933) (Layer Mechanical13) 
+Line (Width 1) (Start 11.81099987, -17.71649933) (End 33.46450043, -17.71649933) (Layer Mechanical13) 
+Line (Width 1) (Start 33.46450043, -17.71649933) (End 33.46450043, 17.71649933) (Layer Mechanical13) 
+Line (Width 1) (Start 33.46450043, 17.71649933) (End 11.81099987, 17.71649933) (Layer Mechanical13) 
+Line (Width 1) (Start -33.46450043, -17.71649933) (End 33.46450043, -17.71649933) (Layer Mechanical13) 
+Line (Width 1) (Start 33.46450043, -17.71649933) (End 33.46450043, 17.71649933) (Layer Mechanical13) 
+Line (Width 1) (Start 33.46450043, 17.71649933) (End -33.46450043, 17.71649933) (Layer Mechanical13) 
+Line (Width 1) (Start -33.46450043, 17.71649933) (End -33.46450043, -17.71649933) (Layer Mechanical13) 
+Step (Name CAPC17090_87N_KEM.step)
+EndFootprint
+
+Footprint (Name "CAPC17090_87N_KEM-M")
+Pad (Name "1") (Location -31.49601936, 0) (Surface True) (Rotation 0) (ExpandMask 0) (ExpandPaste 0)
+PadShape (Size 47.24404144, 37.4015007) (Shape Rectangular) (Layer Top)
+EndPad
+Pad (Name "2") (Location 31.49601936, 0) (Surface True) (Rotation 0) (ExpandMask 0) (ExpandPaste 0)
+PadShape (Size 47.24404144, 37.4015007) (Shape Rectangular) (Layer Top)
+EndPad
+Line (Width 6) (Start -75.11804962, -38.70074844) (End -75.11804962, 38.70074844) (Layer Mechanical15) 
+Line (Width 6) (Start -75.11804962, 38.70074844) (End 75.11804962, 38.70074844) (Layer Mechanical15) 
+Line (Width 6) (Start 75.11804962, 38.70074844) (End 75.11804962, -38.70074844) (Layer Mechanical15) 
+Line (Width 6) (Start 75.11804962, -38.70074844) (End -75.11804962, -38.70074844) (Layer Mechanical15) 
+Polygon (PointCount 4) (Layer Mechanical15) 
+Point (-75.11804962, -38.70074844)
+Point (-75.11804962, 38.70074844)
+Point (75.11804962, 38.70074844)
+Point (75.11804962, -38.70074844)
+EndPolygon
+Polygon (PointCount 4) (Layer Mechanical5) 
+Point (-70.11804962, -33.70074844)
+Point (-70.11804962, 33.70074844)
+Point (70.11804962, 33.70074844)
+Point (70.11804962, -33.70074844)
+EndPolygon
+Line (Width 1) (Start -11.81099987, -17.71649933) (End -11.81099987, 17.71649933) (Layer Mechanical13) 
+Line (Width 1) (Start -11.81099987, 17.71649933) (End -33.46450043, 17.71649933) (Layer Mechanical13) 
+Line (Width 1) (Start -33.46450043, 17.71649933) (End -33.46450043, -17.71649933) (Layer Mechanical13) 
+Line (Width 1) (Start -33.46450043, -17.71649933) (End -11.81099987, -17.71649933) (Layer Mechanical13) 
+Line (Width 1) (Start 11.81099987, 17.71649933) (End 11.81099987, -17.71649933) (Layer Mechanical13) 
+Line (Width 1) (Start 11.81099987, -17.71649933) (End 33.46450043, -17.71649933) (Layer Mechanical13) 
+Line (Width 1) (Start 33.46450043, -17.71649933) (End 33.46450043, 17.71649933) (Layer Mechanical13) 
+Line (Width 1) (Start 33.46450043, 17.71649933) (End 11.81099987, 17.71649933) (Layer Mechanical13) 
+Line (Width 1) (Start -33.46450043, -17.71649933) (End 33.46450043, -17.71649933) (Layer Mechanical13) 
+Line (Width 1) (Start 33.46450043, -17.71649933) (End 33.46450043, 17.71649933) (Layer Mechanical13) 
+Line (Width 1) (Start 33.46450043, 17.71649933) (End -33.46450043, 17.71649933) (Layer Mechanical13) 
+Line (Width 1) (Start -33.46450043, 17.71649933) (End -33.46450043, -17.71649933) (Layer Mechanical13) 
+Step (Name CAPC17090_87N_KEM.step)
+EndFootprint
+
+Footprint (Name "CAPC17090_87N_KEM-L")
+Pad (Name "1") (Location -23.62200928, 0) (Surface True) (Rotation 0) (ExpandMask 0) (ExpandPaste 0)
+PadShape (Size 31.49600983, 33.46450043) (Shape Rectangular) (Layer Top)
+EndPad
+Pad (Name "2") (Location 23.62200928, 0) (Surface True) (Rotation 0) (ExpandMask 0) (ExpandPaste 0)
+PadShape (Size 31.49600983, 33.46450043) (Shape Rectangular) (Layer Top)
+EndPad
+Line (Width 6) (Start -43.37001038, -20.73225021) (End -43.37001038, 20.73225021) (Layer Mechanical15) 
+Line (Width 6) (Start -43.37001038, 20.73225021) (End 43.37001038, 20.73225021) (Layer Mechanical15) 
+Line (Width 6) (Start 43.37001038, 20.73225021) (End 43.37001038, -20.73225021) (Layer Mechanical15) 
+Line (Width 6) (Start 43.37001038, -20.73225021) (End -43.37001038, -20.73225021) (Layer Mechanical15) 
+Polygon (PointCount 4) (Layer Mechanical15) 
+Point (-43.37001038, -20.73225021)
+Point (-43.37001038, 20.73225021)
+Point (43.37001038, 20.73225021)
+Point (43.37001038, -20.73225021)
+EndPolygon
+Polygon (PointCount 4) (Layer Mechanical5) 
+Point (-54.36999893, -31.73225021)
+Point (-54.36999893, 31.73225021)
+Point (54.36999893, 31.73225021)
+Point (54.36999893, -31.73225021)
+EndPolygon
+Line (Width 1) (Start -11.81099987, -17.71649933) (End -11.81099987, 17.71649933) (Layer Mechanical13) 
+Line (Width 1) (Start -11.81099987, 17.71649933) (End -33.46450043, 17.71649933) (Layer Mechanical13) 
+Line (Width 1) (Start -33.46450043, 17.71649933) (End -33.46450043, -17.71649933) (Layer Mechanical13) 
+Line (Width 1) (Start -33.46450043, -17.71649933) (End -11.81099987, -17.71649933) (Layer Mechanical13) 
+Line (Width 1) (Start 11.81099987, 17.71649933) (End 11.81099987, -17.71649933) (Layer Mechanical13) 
+Line (Width 1) (Start 11.81099987, -17.71649933) (End 33.46450043, -17.71649933) (Layer Mechanical13) 
+Line (Width 1) (Start 33.46450043, -17.71649933) (End 33.46450043, 17.71649933) (Layer Mechanical13) 
+Line (Width 1) (Start 33.46450043, 17.71649933) (End 11.81099987, 17.71649933) (Layer Mechanical13) 
+Line (Width 1) (Start -33.46450043, -17.71649933) (End 33.46450043, -17.71649933) (Layer Mechanical13) 
+Line (Width 1) (Start 33.46450043, -17.71649933) (End 33.46450043, 17.71649933) (Layer Mechanical13) 
+Line (Width 1) (Start 33.46450043, 17.71649933) (End -33.46450043, 17.71649933) (Layer Mechanical13) 
+Line (Width 1) (Start -33.46450043, 17.71649933) (End -33.46450043, -17.71649933) (Layer Mechanical13) 
+Step (Name CAPC17090_87N_KEM.step)
+EndFootprint
+EndFootprints
+
+StartComponents
+
+Component (Name "CBR06C259B5GAC") (PartCount 1) (DesPrefix "C?")
+Pin (Location 200, 0) (Rotation 0) (PinType Passive) (Length 100) (Width 0) (Designator Hidden "2") (Name Hidden "2") (PinSwap 1) (PartSwap 1) (PinSeq 2) (Part 1)
+Pin (Location 100, 0) (Rotation 180) (PinType Passive) (Length 100) (Width 0) (Designator Hidden "1") (Name Hidden "1") (PinSwap 1) (PartSwap 1) (PinSeq 1) (Part 1)
+Line (Width 8) (Start 137, -75) (End 137, 75) (Part 1)
+Line (Width 8) (Start 162, -75) (End 162, 75) (Part 1)
+Line (Width 8) (Start 162, 0) (End 200, 0) (Part 1)
+Line (Width 8) (Start 100, 0) (End 137, 0) (Part 1)
+Parameter (Name "Copyright") (Location 0, 0) (Height 50) (Rotation 0) (Justification Center) (Value "Copyright (C) 2022 Ultra Librarian. All rights reserved.") (Part 1)
+Parameter (Name "Mfr_Name") (Location 0, 0) (Height 50) (Rotation 0) (Justification Center) (Value "Kemet") (Part 1)
+Parameter (Name "Manufacturer_Part_Number") (Location 0, 0) (Height 50) (Rotation 0) (Justification Center) (Value "CBR06C259B5GAC") (Part 1)
+Parameter (Name "RefDes") (Location 150, 150) (Height 137) (Rotation 0) (Justification Center) (Value "RefDes") (Part 1)
+Parameter (Name "Type") (Location 150, -300) (Height 137) (Rotation 0) (Justification Center) (Value "DEV") (Part 1)
+Description (Value "No Description Available") (Part 1)
+Comment (Value "CBR06C259B5GAC") (Part 1)
+Footprint (Name "CAPC17090_87N_KEM")
+EndComponent
+EndComponents

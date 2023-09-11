@@ -1,0 +1,148 @@
+# Created by Ultra Librarian Gold 8.3.307 Copyright © 1999-2021
+# Frank Frank, Accelerated Designs
+
+StartFootprints
+
+Footprint (Name "RC0603N_YAG")
+Pad (Name "1") (Location -30.38975906, 0) (Surface True) (Rotation 0) (ExpandMask 0) (ExpandPaste 0)
+PadShape (Size 29.77952957, 32) (Shape Rectangular) (Layer Top)
+EndPad
+Pad (Name "2") (Location 30.38975906, 0) (Surface True) (Rotation 0) (ExpandMask 0) (ExpandPaste 0)
+PadShape (Size 29.77952957, 32) (Shape Rectangular) (Layer Top)
+EndPad
+Line (Width 6) (Start -55.27954865, -26) (End -55.27954865, 26) (Layer Mechanical15) 
+Line (Width 6) (Start -55.27954865, 26) (End 55.27954865, 26) (Layer Mechanical15) 
+Line (Width 6) (Start 55.27954865, 26) (End 55.27954865, -26) (Layer Mechanical15) 
+Line (Width 6) (Start 55.27954865, -26) (End -55.27954865, -26) (Layer Mechanical15) 
+Polygon (PointCount 4) (Layer Mechanical15) 
+Point (-55.27954865, -26)
+Point (-55.27954865, 26)
+Point (55.27954865, 26)
+Point (55.27954865, -26)
+EndPolygon
+Polygon (PointCount 4) (Layer Mechanical5) 
+Point (-60.27954865, -31)
+Point (-60.27954865, 31)
+Point (60.27954865, 31)
+Point (60.27954865, -31)
+EndPolygon
+Line (Width 6) (Start -3.39173222, -21) (End 3.39173222, -21) (Layer TopOverlay) 
+Line (Width 6) (Start 3.39173222, 21) (End -3.39173222, 21) (Layer TopOverlay) 
+Line (Width 1) (Start -15.5, -16) (End -15.5, 16) (Layer Mechanical13) 
+Line (Width 1) (Start -15.5, 16) (End -31.5, 16) (Layer Mechanical13) 
+Line (Width 1) (Start -31.5, 16) (End -31.5, -16) (Layer Mechanical13) 
+Line (Width 1) (Start -31.5, -16) (End -15.5, -16) (Layer Mechanical13) 
+Line (Width 1) (Start 15.5, 16) (End 15.5, -16) (Layer Mechanical13) 
+Line (Width 1) (Start 15.5, -16) (End 31.5, -16) (Layer Mechanical13) 
+Line (Width 1) (Start 31.5, -16) (End 31.5, 16) (Layer Mechanical13) 
+Line (Width 1) (Start 31.5, 16) (End 15.5, 16) (Layer Mechanical13) 
+Line (Width 1) (Start -31.5, -16) (End 31.5, -16) (Layer Mechanical13) 
+Line (Width 1) (Start 31.5, -16) (End 31.5, 16) (Layer Mechanical13) 
+Line (Width 1) (Start 31.5, 16) (End -31.5, 16) (Layer Mechanical13) 
+Line (Width 1) (Start -31.5, 16) (End -31.5, -16) (Layer Mechanical13) 
+Step (Name RC0603N_YAG.step)
+EndFootprint
+
+Footprint (Name "RC0603N_YAG-M")
+Pad (Name "1") (Location -34.32677078, 0) (Surface True) (Rotation 0) (ExpandMask 0) (ExpandPaste 0)
+PadShape (Size 37.65354156, 33.96849823) (Shape Rectangular) (Layer Top)
+EndPad
+Pad (Name "2") (Location 34.32677078, 0) (Surface True) (Rotation 0) (ExpandMask 0) (ExpandPaste 0)
+PadShape (Size 37.65354156, 33.96849823) (Shape Rectangular) (Layer Top)
+EndPad
+Line (Width 6) (Start -73.15354919, -36.98424911) (End -73.15354919, 36.98424911) (Layer Mechanical15) 
+Line (Width 6) (Start -73.15354919, 36.98424911) (End 73.15354919, 36.98424911) (Layer Mechanical15) 
+Line (Width 6) (Start 73.15354919, 36.98424911) (End 73.15354919, -36.98424911) (Layer Mechanical15) 
+Line (Width 6) (Start 73.15354919, -36.98424911) (End -73.15354919, -36.98424911) (Layer Mechanical15) 
+Polygon (PointCount 4) (Layer Mechanical15) 
+Point (-73.15354919, -36.98424911)
+Point (-73.15354919, 36.98424911)
+Point (73.15354919, 36.98424911)
+Point (73.15354919, -36.98424911)
+EndPolygon
+Polygon (PointCount 4) (Layer Mechanical5) 
+Point (-68.15354919, -31.98424911)
+Point (-68.15354919, 31.98424911)
+Point (68.15354919, 31.98424911)
+Point (68.15354919, -31.98424911)
+EndPolygon
+Line (Width 6) (Start -3.03068748, -21) (End 3.03068748, -21) (Layer TopOverlay) 
+Line (Width 6) (Start 3.03068748, 21) (End -3.03068748, 21) (Layer TopOverlay) 
+Line (Width 1) (Start -15.5, -16) (End -15.5, 16) (Layer Mechanical13) 
+Line (Width 1) (Start -15.5, 16) (End -31.5, 16) (Layer Mechanical13) 
+Line (Width 1) (Start -31.5, 16) (End -31.5, -16) (Layer Mechanical13) 
+Line (Width 1) (Start -31.5, -16) (End -15.5, -16) (Layer Mechanical13) 
+Line (Width 1) (Start 15.5, 16) (End 15.5, -16) (Layer Mechanical13) 
+Line (Width 1) (Start 15.5, -16) (End 31.5, -16) (Layer Mechanical13) 
+Line (Width 1) (Start 31.5, -16) (End 31.5, 16) (Layer Mechanical13) 
+Line (Width 1) (Start 31.5, 16) (End 15.5, 16) (Layer Mechanical13) 
+Line (Width 1) (Start -31.5, -16) (End 31.5, -16) (Layer Mechanical13) 
+Line (Width 1) (Start 31.5, -16) (End 31.5, 16) (Layer Mechanical13) 
+Line (Width 1) (Start 31.5, 16) (End -31.5, 16) (Layer Mechanical13) 
+Line (Width 1) (Start -31.5, 16) (End -31.5, -16) (Layer Mechanical13) 
+Step (Name RC0603N_YAG.step)
+EndFootprint
+
+Footprint (Name "RC0603N_YAG-L")
+Pad (Name "1") (Location -26.4527607, 0) (Surface True) (Rotation 0) (ExpandMask 0) (ExpandPaste 0)
+PadShape (Size 21.90550995, 30.03149986) (Shape Rectangular) (Layer Top)
+EndPad
+Pad (Name "2") (Location 26.4527607, 0) (Surface True) (Rotation 0) (ExpandMask 0) (ExpandPaste 0)
+PadShape (Size 21.90550995, 30.03149986) (Shape Rectangular) (Layer Top)
+EndPad
+Line (Width 6) (Start -41.40550995, -19.01575089) (End -41.40550995, 19.01575089) (Layer Mechanical15) 
+Line (Width 6) (Start -41.40550995, 19.01575089) (End 41.40550995, 19.01575089) (Layer Mechanical15) 
+Line (Width 6) (Start 41.40550995, 19.01575089) (End 41.40550995, -19.01575089) (Layer Mechanical15) 
+Line (Width 6) (Start 41.40550995, -19.01575089) (End -41.40550995, -19.01575089) (Layer Mechanical15) 
+Polygon (PointCount 4) (Layer Mechanical15) 
+Point (-41.40550995, -19.01575089)
+Point (-41.40550995, 19.01575089)
+Point (41.40550995, 19.01575089)
+Point (41.40550995, -19.01575089)
+EndPolygon
+Polygon (PointCount 4) (Layer Mechanical5) 
+Point (-52.4054985, -30.01575089)
+Point (-52.4054985, 30.01575089)
+Point (52.4054985, 30.01575089)
+Point (52.4054985, -30.01575089)
+EndPolygon
+Line (Width 6) (Start -3.84673317, -21) (End 3.84673317, -21) (Layer TopOverlay) 
+Line (Width 6) (Start 3.84673317, 21) (End -3.84673317, 21) (Layer TopOverlay) 
+Line (Width 1) (Start -15.5, -16) (End -15.5, 16) (Layer Mechanical13) 
+Line (Width 1) (Start -15.5, 16) (End -31.5, 16) (Layer Mechanical13) 
+Line (Width 1) (Start -31.5, 16) (End -31.5, -16) (Layer Mechanical13) 
+Line (Width 1) (Start -31.5, -16) (End -15.5, -16) (Layer Mechanical13) 
+Line (Width 1) (Start 15.5, 16) (End 15.5, -16) (Layer Mechanical13) 
+Line (Width 1) (Start 15.5, -16) (End 31.5, -16) (Layer Mechanical13) 
+Line (Width 1) (Start 31.5, -16) (End 31.5, 16) (Layer Mechanical13) 
+Line (Width 1) (Start 31.5, 16) (End 15.5, 16) (Layer Mechanical13) 
+Line (Width 1) (Start -31.5, -16) (End 31.5, -16) (Layer Mechanical13) 
+Line (Width 1) (Start 31.5, -16) (End 31.5, 16) (Layer Mechanical13) 
+Line (Width 1) (Start 31.5, 16) (End -31.5, 16) (Layer Mechanical13) 
+Line (Width 1) (Start -31.5, 16) (End -31.5, -16) (Layer Mechanical13) 
+Step (Name RC0603N_YAG.step)
+EndFootprint
+EndFootprints
+
+StartComponents
+
+Component (Name "RC0603FR-073K32L") (PartCount 1) (DesPrefix "R?")
+Pin (Location 100, 0) (Rotation 180) (PinType Passive) (Length 100) (Width 0) (Designator Hidden "2") (Name Visible "2") (PinSwap 1) (PartSwap 0) (PinSeq 2) (Part 1)
+Pin (Location 400, 0) (Rotation 0) (PinType Passive) (Length 100) (Width 0) (Designator Hidden "1") (Name Hidden "1") (PinSwap 1) (PartSwap 0) (PinSeq 1) (Part 1)
+Line (Width 8) (Start 125, 50) (End 175, -50) (Part 1)
+Line (Width 8) (Start 175, -50) (End 225, 50) (Part 1)
+Line (Width 8) (Start 225, 50) (End 275, -50) (Part 1)
+Line (Width 8) (Start 275, -50) (End 325, 50) (Part 1)
+Line (Width 8) (Start 325, 50) (End 375, -50) (Part 1)
+Line (Width 8) (Start 100, 0) (End 125, 50) (Part 1)
+Line (Width 8) (Start 375, -50) (End 400, 0) (Part 1)
+Parameter (Name "Copyright") (Location 0, 0) (Height 50) (Rotation 0) (Justification Center) (Value "Copyright (C) 2022 Ultra Librarian. All rights reserved.") (Part 1)
+Parameter (Name "Mfr_Name") (Location 0, 0) (Height 50) (Rotation 0) (Justification Center) (Value "Yageo") (Part 1)
+Parameter (Name "Manufacturer_Part_Number") (Location 0, 0) (Height 50) (Rotation 0) (Justification Center) (Value "RC0603FR-073K32L") (Part 1)
+Parameter (Name "RefDes") (Location 225, 150) (Height 137) (Rotation 0) (Justification Center) (Value "RefDes") (Part 1)
+Parameter (Name "Type") (Location 250, -275) (Height 137) (Rotation 0) (Justification Center) (Value "DEV") (Part 1)
+Description (Value "No Description Available") (Part 1)
+Comment (Value "RC0603FR-073K32L") (Part 1)
+Footprint (Name "RC0603N_YAG")
+EndComponent
+EndComponents

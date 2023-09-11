@@ -1,0 +1,63 @@
+# Created by Ultra Librarian Gold 8.3.307 Copyright © 1999-2021
+# Frank Frank, Accelerated Designs
+
+StartFootprints
+
+Footprint (Name "640452-2_TYC")
+Pad (Name "1") (Location 0, 0) (HoleSize 40) (Surface False) (Rotation 0) (ExpandMask 0)
+PadShape (Size 60, 60) (Shape Rounded) (Layer Top)
+PadShape (Size 60, 60) (Shape Rounded) (Layer Bottom)
+PadShape (Size 60, 60) (Shape Rounded) (Layer MidLayer)
+EndPad
+Pad (Name "2") (Location 100, 0) (HoleSize 40) (Surface False) (Rotation 0) (ExpandMask 0)
+PadShape (Size 60, 60) (Shape Rounded) (Layer Top)
+PadShape (Size 60, 60) (Shape Rounded) (Layer Bottom)
+PadShape (Size 60, 60) (Shape Rounded) (Layer MidLayer)
+EndPad
+Line (Width 6) (Start -60, 110) (End -60, -110) (Layer Mechanical15) 
+Line (Width 6) (Start -60, -110) (End 160, -110) (Layer Mechanical15) 
+Line (Width 6) (Start 160, -110) (End 160, 110) (Layer Mechanical15) 
+Line (Width 6) (Start 160, 110) (End -60, 110) (Layer Mechanical15) 
+Polygon (PointCount 4) (Layer Mechanical15) 
+Point (-60, 110)
+Point (-60, -110)
+Point (160, -110)
+Point (160, 110)
+EndPolygon
+Polygon (PointCount 4) (Layer Mechanical5) 
+Point (165, 115)
+Point (165, -115)
+Point (-65, -115)
+Point (-65, 115)
+EndPolygon
+Line (Width 6) (Start -55, -105) (End 155, -105) (Layer TopOverlay) 
+Line (Width 6) (Start 155, -105) (End 155, 105) (Layer TopOverlay) 
+Line (Width 6) (Start 155, 105) (End -55, 105) (Layer TopOverlay) 
+Line (Width 6) (Start -55, 105) (End -55, -105) (Layer TopOverlay) 
+Arc (Width 20) (Radius 15) (Location -125, 0) (StartAngle 0) (EndAngle 360) (Layer TopOverlay) 
+Line (Width 1) (Start -50, -100) (End 150, -100) (Layer Mechanical13) 
+Line (Width 1) (Start 150, -100) (End 150, 100) (Layer Mechanical13) 
+Line (Width 1) (Start 150, 100) (End -50, 100) (Layer Mechanical13) 
+Line (Width 1) (Start -50, 100) (End -50, -100) (Layer Mechanical13) 
+Arc (Width 20) (Radius 15) (Location 0, -75) (StartAngle 0) (EndAngle 360) (Layer Mechanical13) 
+Arc (Width 20) (Radius 15) (Location -125, 0) (StartAngle 0) (EndAngle 360) (Layer BottomOverlay) 
+Step (Name 640452-2_TYC.step)
+EndFootprint
+EndFootprints
+
+StartComponents
+
+Component (Name "640452-2") (PartCount 1) (DesPrefix "J?")
+Pin (Location 300, 0) (Rotation 180) (PinType Passive) (Length 300) (Width 0) (Designator Visible "A1") (Name Visible "A1") (PinSwap 0) (PartSwap 0) (PinSeq 1) (Part 1)
+Pin (Location 1700, 0) (Rotation 0) (PinType Passive) (Length 300) (Width 0) (Designator Visible "A2") (Name Visible "A2") (PinSwap 0) (PartSwap 0) (PinSeq 2) (Part 1)
+Rectangle (Width 5) (Start 300, -200) (End 1700, 200) (Part 1)
+Parameter (Name "Copyright") (Location 0, 0) (Height 50) (Rotation 0) (Justification Center) (Value "Copyright (C) 2022 Ultra Librarian. All rights reserved.") (Part 1)
+Parameter (Name "Mfr_Name") (Location 0, 0) (Height 50) (Rotation 0) (Justification Center) (Value "TE Connectivity") (Part 1)
+Parameter (Name "Manufacturer_Part_Number") (Location 0, 0) (Height 50) (Rotation 0) (Justification Center) (Value "640452-2") (Part 1)
+Parameter (Name "RefDes") (Location 1000, 400) (Height 82) (Rotation 0) (Justification Center) (Value "RefDes") (Part 1)
+Parameter (Name "Type") (Location 1000, 300) (Height 82) (Rotation 0) (Justification Center) (Value "DEV") (Part 1)
+Description (Value "No Description Available") (Part 1)
+Comment (Value "640452-2") (Part 1)
+Footprint (Name "640452-2_TYC")
+EndComponent
+EndComponents

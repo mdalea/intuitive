@@ -1,0 +1,77 @@
+# Created by Ultra Librarian Gold 8.3.307 Copyright © 1999-2021
+# Frank Frank, Accelerated Designs
+
+StartFootprints
+
+Footprint (Name "CONN_M20-99903XX_HRW")
+Pad (Name "1") (Location 0, 0) (HoleSize 36) (Surface False) (Rotation 0) (ExpandMask 0)
+PadShape (Size 56, 56) (Shape Rectangular) (Layer Top)
+PadShape (Size 56, 56) (Shape Rectangular) (Layer Bottom)
+PadShape (Size 56, 56) (Shape Rectangular) (Layer MidLayer)
+EndPad
+Pad (Name "2") (Location 100, 0) (HoleSize 36) (Surface False) (Rotation 0) (ExpandMask 0)
+PadShape (Size 56, 56) (Shape Rounded) (Layer Top)
+PadShape (Size 56, 56) (Shape Rounded) (Layer Bottom)
+PadShape (Size 56, 56) (Shape Rounded) (Layer MidLayer)
+EndPad
+Pad (Name "3") (Location 200, 0) (HoleSize 36) (Surface False) (Rotation 0) (ExpandMask 0)
+PadShape (Size 56, 56) (Shape Rounded) (Layer Top)
+PadShape (Size 56, 56) (Shape Rounded) (Layer Bottom)
+PadShape (Size 56, 56) (Shape Rounded) (Layer MidLayer)
+EndPad
+Line (Width 6) (Start -70, 62) (End -70, -62) (Layer Mechanical15) 
+Line (Width 6) (Start -70, -62) (End 270, -62) (Layer Mechanical15) 
+Line (Width 6) (Start 270, -62) (End 270, 62) (Layer Mechanical15) 
+Line (Width 6) (Start 270, 62) (End -70, 62) (Layer Mechanical15) 
+Polygon (PointCount 4) (Layer Mechanical15) 
+Point (-70, 62)
+Point (-70, -62)
+Point (270, -62)
+Point (270, 62)
+EndPolygon
+Polygon (PointCount 4) (Layer Mechanical5) 
+Point (-122.5, -114.5)
+Point (-122.5, 114.5)
+Point (322.5, 114.5)
+Point (322.5, -114.5)
+EndPolygon
+Line (Width 6) (Start -65, -57) (End 265, -57) (Layer TopOverlay) 
+Line (Width 6) (Start 265, -57) (End 265, 57) (Layer TopOverlay) 
+Line (Width 6) (Start 265, 57) (End -65, 57) (Layer TopOverlay) 
+Line (Width 6) (Start -65, 57) (End -65, -57) (Layer TopOverlay) 
+Arc (Width 20) (Radius 10) (Location 0, -85) (StartAngle 0) (EndAngle 360) (Layer TopOverlay) 
+Line (Width 1) (Start -60, -52) (End 260, -52) (Layer Mechanical13) 
+Line (Width 1) (Start 260, -52) (End 260, 52) (Layer Mechanical13) 
+Line (Width 1) (Start 260, 52) (End -60, 52) (Layer Mechanical13) 
+Line (Width 1) (Start -60, 52) (End -60, -52) (Layer Mechanical13) 
+Arc (Width 0) (Radius 10) (Location 0, -37) (StartAngle 0) (EndAngle 360) (Layer Mechanical13) 
+Step (Name CONN_M20-99903XX_HRW.step)
+EndFootprint
+EndFootprints
+
+StartComponents
+
+Component (Name "M20-9990345") (PartCount 1) (DesPrefix "J?")
+Pin (Location 200, 0) (Rotation 180) (PinType Passive) (Length 200) (Width 0) (Designator Visible "1") (Name Hidden "1") (PinSwap 0) (PartSwap 0) (PinSeq 1) (Part 1)
+Pin (Location 200, -100) (Rotation 180) (PinType Passive) (Length 200) (Width 0) (Designator Visible "2") (Name Hidden "2") (PinSwap 0) (PartSwap 0) (PinSeq 2) (Part 1)
+Pin (Location 200, -200) (Rotation 180) (PinType Passive) (Length 200) (Width 0) (Designator Visible "3") (Name Hidden "3") (PinSwap 0) (PartSwap 0) (PinSeq 3) (Part 1)
+Line (Width 5) (Start 400, 0) (End 200, 0) (Part 1)
+Line (Width 5) (Start 400, -100) (End 200, -100) (Part 1)
+Line (Width 5) (Start 400, -200) (End 200, -200) (Part 1)
+Line (Width 5) (Start 400, 0) (End 350, 33.3333) (Part 1)
+Line (Width 5) (Start 400, -100) (End 350, -66.6667) (Part 1)
+Line (Width 5) (Start 400, -200) (End 350, -166.6667) (Part 1)
+Line (Width 5) (Start 400, 0) (End 350, -33.3333) (Part 1)
+Line (Width 5) (Start 400, -100) (End 350, -133.3333) (Part 1)
+Line (Width 5) (Start 400, -200) (End 350, -233.3333) (Part 1)
+Rectangle (Width 5) (Start 200, -300) (End 500, 100) (Part 1)
+Parameter (Name "Copyright") (Location 0, 0) (Height 50) (Rotation 0) (Justification Center) (Value "Copyright (C) 2022 Ultra Librarian. All rights reserved.") (Part 1)
+Parameter (Name "Mfr_Name") (Location 0, 0) (Height 50) (Rotation 0) (Justification Center) (Value "Harwin") (Part 1)
+Parameter (Name "Manufacturer_Part_Number") (Location 0, 0) (Height 50) (Rotation 0) (Justification Center) (Value "M20-9990345") (Part 1)
+Parameter (Name "RefDes") (Location 350, 250) (Height 82) (Rotation 0) (Justification Center) (Value "RefDes") (Part 1)
+Parameter (Name "Type") (Location 400, -100) (Height 82) (Rotation 0) (Justification Center) (Value "DEV") (Part 1)
+Description (Value "No Description Available") (Part 1)
+Comment (Value "M20-9990345") (Part 1)
+Footprint (Name "CONN_M20-99903XX_HRW")
+EndComponent
+EndComponents

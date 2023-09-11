@@ -1,0 +1,155 @@
+# Created by Ultra Librarian Gold 8.3.307 Copyright © 1999-2021
+# Frank Frank, Accelerated Designs
+
+StartFootprints
+
+Footprint (Name "281742-8_TYC")
+Pad (Name "1") (Location 0, 0) (HoleSize 40) (Surface False) (Rotation 0) (ExpandMask 0)
+PadShape (Size 60, 60) (Shape Rounded) (Layer Top)
+PadShape (Size 60, 60) (Shape Rounded) (Layer Bottom)
+PadShape (Size 60, 60) (Shape Rounded) (Layer MidLayer)
+EndPad
+Pad (Name "2") (Location 100, 0) (HoleSize 40) (Surface False) (Rotation 0) (ExpandMask 0)
+PadShape (Size 60, 60) (Shape Rounded) (Layer Top)
+PadShape (Size 60, 60) (Shape Rounded) (Layer Bottom)
+PadShape (Size 60, 60) (Shape Rounded) (Layer MidLayer)
+EndPad
+Pad (Name "3") (Location 200, 0) (HoleSize 40) (Surface False) (Rotation 0) (ExpandMask 0)
+PadShape (Size 60, 60) (Shape Rounded) (Layer Top)
+PadShape (Size 60, 60) (Shape Rounded) (Layer Bottom)
+PadShape (Size 60, 60) (Shape Rounded) (Layer MidLayer)
+EndPad
+Pad (Name "4") (Location 300, 0) (HoleSize 40) (Surface False) (Rotation 0) (ExpandMask 0)
+PadShape (Size 60, 60) (Shape Rounded) (Layer Top)
+PadShape (Size 60, 60) (Shape Rounded) (Layer Bottom)
+PadShape (Size 60, 60) (Shape Rounded) (Layer MidLayer)
+EndPad
+Pad (Name "5") (Location 400, 0) (HoleSize 40) (Surface False) (Rotation 0) (ExpandMask 0)
+PadShape (Size 60, 60) (Shape Rounded) (Layer Top)
+PadShape (Size 60, 60) (Shape Rounded) (Layer Bottom)
+PadShape (Size 60, 60) (Shape Rounded) (Layer MidLayer)
+EndPad
+Pad (Name "6") (Location 500, 0) (HoleSize 40) (Surface False) (Rotation 0) (ExpandMask 0)
+PadShape (Size 60, 60) (Shape Rounded) (Layer Top)
+PadShape (Size 60, 60) (Shape Rounded) (Layer Bottom)
+PadShape (Size 60, 60) (Shape Rounded) (Layer MidLayer)
+EndPad
+Pad (Name "7") (Location 600, 0) (HoleSize 40) (Surface False) (Rotation 0) (ExpandMask 0)
+PadShape (Size 60, 60) (Shape Rounded) (Layer Top)
+PadShape (Size 60, 60) (Shape Rounded) (Layer Bottom)
+PadShape (Size 60, 60) (Shape Rounded) (Layer MidLayer)
+EndPad
+Pad (Name "8") (Location 700, 0) (HoleSize 40) (Surface False) (Rotation 0) (ExpandMask 0)
+PadShape (Size 60, 60) (Shape Rounded) (Layer Top)
+PadShape (Size 60, 60) (Shape Rounded) (Layer Bottom)
+PadShape (Size 60, 60) (Shape Rounded) (Layer MidLayer)
+EndPad
+Pad (Name "9") (Location 700, -100) (HoleSize 40) (Surface False) (Rotation 0) (ExpandMask 0)
+PadShape (Size 60, 60) (Shape Rounded) (Layer Top)
+PadShape (Size 60, 60) (Shape Rounded) (Layer Bottom)
+PadShape (Size 60, 60) (Shape Rounded) (Layer MidLayer)
+EndPad
+Pad (Name "10") (Location 600, -100) (HoleSize 40) (Surface False) (Rotation 0) (ExpandMask 0)
+PadShape (Size 60, 60) (Shape Rounded) (Layer Top)
+PadShape (Size 60, 60) (Shape Rounded) (Layer Bottom)
+PadShape (Size 60, 60) (Shape Rounded) (Layer MidLayer)
+EndPad
+Pad (Name "11") (Location 500, -100) (HoleSize 40) (Surface False) (Rotation 0) (ExpandMask 0)
+PadShape (Size 60, 60) (Shape Rounded) (Layer Top)
+PadShape (Size 60, 60) (Shape Rounded) (Layer Bottom)
+PadShape (Size 60, 60) (Shape Rounded) (Layer MidLayer)
+EndPad
+Pad (Name "12") (Location 400, -100) (HoleSize 40) (Surface False) (Rotation 0) (ExpandMask 0)
+PadShape (Size 60, 60) (Shape Rounded) (Layer Top)
+PadShape (Size 60, 60) (Shape Rounded) (Layer Bottom)
+PadShape (Size 60, 60) (Shape Rounded) (Layer MidLayer)
+EndPad
+Pad (Name "13") (Location 300, -100) (HoleSize 40) (Surface False) (Rotation 0) (ExpandMask 0)
+PadShape (Size 60, 60) (Shape Rounded) (Layer Top)
+PadShape (Size 60, 60) (Shape Rounded) (Layer Bottom)
+PadShape (Size 60, 60) (Shape Rounded) (Layer MidLayer)
+EndPad
+Pad (Name "14") (Location 200, -100) (HoleSize 40) (Surface False) (Rotation 0) (ExpandMask 0)
+PadShape (Size 60, 60) (Shape Rounded) (Layer Top)
+PadShape (Size 60, 60) (Shape Rounded) (Layer Bottom)
+PadShape (Size 60, 60) (Shape Rounded) (Layer MidLayer)
+EndPad
+Pad (Name "15") (Location 100, -100) (HoleSize 40) (Surface False) (Rotation 0) (ExpandMask 0)
+PadShape (Size 60, 60) (Shape Rounded) (Layer Top)
+PadShape (Size 60, 60) (Shape Rounded) (Layer Bottom)
+PadShape (Size 60, 60) (Shape Rounded) (Layer MidLayer)
+EndPad
+Pad (Name "16") (Location 0, -100) (HoleSize 40) (Surface False) (Rotation 0) (ExpandMask 0)
+PadShape (Size 60, 60) (Shape Rounded) (Layer Top)
+PadShape (Size 60, 60) (Shape Rounded) (Layer Bottom)
+PadShape (Size 60, 60) (Shape Rounded) (Layer MidLayer)
+EndPad
+Line (Width 6) (Start -60, 40) (End -60, -623.93701172) (Layer Mechanical15) 
+Line (Width 6) (Start -60, -623.93701172) (End 760, -623.93701172) (Layer Mechanical15) 
+Line (Width 6) (Start 760, -623.93701172) (End 760, 40) (Layer Mechanical15) 
+Line (Width 6) (Start 760, 40) (End -60, 40) (Layer Mechanical15) 
+Polygon (PointCount 4) (Layer Mechanical15) 
+Point (-60, 40)
+Point (-60, -623.93701172)
+Point (760, -623.93701172)
+Point (760, 40)
+EndPolygon
+Polygon (PointCount 4) (Layer Mechanical5) 
+Point (875, 115)
+Point (875, -738.93701172)
+Point (-175, -738.93701172)
+Point (-175, 115)
+EndPolygon
+Line (Width 6) (Start 657.19100523, -5) (End 642.80899477, -5) (Layer TopOverlay) 
+Line (Width 6) (Start -55, -618.93701172) (End 755, -618.93701172) (Layer TopOverlay) 
+Line (Width 6) (Start 755, -618.93701172) (End 755, -5) (Layer TopOverlay) 
+Line (Width 6) (Start 755, -5) (End 742.80899477, -5) (Layer TopOverlay) 
+Line (Width 6) (Start -55, -5) (End -55, -618.93701172) (Layer TopOverlay) 
+Line (Width 6) (Start -42.80899477, -5) (End -55, -5) (Layer TopOverlay) 
+Line (Width 6) (Start 57.19100523, -5) (End 42.80899477, -5) (Layer TopOverlay) 
+Line (Width 6) (Start 157.19100523, -5) (End 142.80899477, -5) (Layer TopOverlay) 
+Line (Width 6) (Start 257.19100523, -5) (End 242.80899477, -5) (Layer TopOverlay) 
+Line (Width 6) (Start 357.19100523, -5) (End 342.80899477, -5) (Layer TopOverlay) 
+Line (Width 6) (Start 457.19100523, -5) (End 442.80899477, -5) (Layer TopOverlay) 
+Line (Width 6) (Start 557.19100523, -5) (End 542.80899477, -5) (Layer TopOverlay) 
+Arc (Width 20) (Radius 15) (Location -80, 0) (StartAngle 0) (EndAngle 360) (Layer TopOverlay) 
+Line (Width 1) (Start -50, -613.93701172) (End 750, -613.93701172) (Layer Mechanical13) 
+Line (Width 1) (Start 750, -613.93701172) (End 750, -10) (Layer Mechanical13) 
+Line (Width 1) (Start 750, -10) (End -50, -10) (Layer Mechanical13) 
+Line (Width 1) (Start -50, -10) (End -50, -613.93701172) (Layer Mechanical13) 
+Arc (Width 20) (Radius 15) (Location 0, 75) (StartAngle 0) (EndAngle 360) (Layer Mechanical13) 
+Arc (Width 20) (Radius 15) (Location -80, 0) (StartAngle 0) (EndAngle 360) (Layer BottomOverlay) 
+Step (Name 281742-8_TYC.step)
+EndFootprint
+EndFootprints
+
+StartComponents
+
+Component (Name "281742-8") (PartCount 1) (DesPrefix "U?")
+Pin (Location 300, 0) (Rotation 180) (PinType Passive) (Length 300) (Width 0) (Designator Visible "1") (Name Visible "1") (PinSwap 0) (PartSwap 0) (PinSeq 1) (Part 1)
+Pin (Location 300, -100) (Rotation 180) (PinType Passive) (Length 300) (Width 0) (Designator Visible "2") (Name Visible "2") (PinSwap 0) (PartSwap 0) (PinSeq 2) (Part 1)
+Pin (Location 300, -200) (Rotation 180) (PinType Passive) (Length 300) (Width 0) (Designator Visible "3") (Name Visible "3") (PinSwap 0) (PartSwap 0) (PinSeq 3) (Part 1)
+Pin (Location 300, -300) (Rotation 180) (PinType Passive) (Length 300) (Width 0) (Designator Visible "4") (Name Visible "4") (PinSwap 0) (PartSwap 0) (PinSeq 4) (Part 1)
+Pin (Location 300, -400) (Rotation 180) (PinType Passive) (Length 300) (Width 0) (Designator Visible "5") (Name Visible "5") (PinSwap 0) (PartSwap 0) (PinSeq 5) (Part 1)
+Pin (Location 300, -500) (Rotation 180) (PinType Passive) (Length 300) (Width 0) (Designator Visible "6") (Name Visible "6") (PinSwap 0) (PartSwap 0) (PinSeq 6) (Part 1)
+Pin (Location 300, -600) (Rotation 180) (PinType Passive) (Length 300) (Width 0) (Designator Visible "7") (Name Visible "7") (PinSwap 0) (PartSwap 0) (PinSeq 7) (Part 1)
+Pin (Location 300, -700) (Rotation 180) (PinType Passive) (Length 300) (Width 0) (Designator Visible "8") (Name Visible "8") (PinSwap 0) (PartSwap 0) (PinSeq 8) (Part 1)
+Pin (Location 1700, -700) (Rotation 0) (PinType Passive) (Length 300) (Width 0) (Designator Visible "9") (Name Visible "9") (PinSwap 0) (PartSwap 0) (PinSeq 9) (Part 1)
+Pin (Location 1700, -600) (Rotation 0) (PinType Passive) (Length 300) (Width 0) (Designator Visible "10") (Name Visible "10") (PinSwap 0) (PartSwap 0) (PinSeq 10) (Part 1)
+Pin (Location 1700, -500) (Rotation 0) (PinType Passive) (Length 300) (Width 0) (Designator Visible "11") (Name Visible "11") (PinSwap 0) (PartSwap 0) (PinSeq 11) (Part 1)
+Pin (Location 1700, -400) (Rotation 0) (PinType Passive) (Length 300) (Width 0) (Designator Visible "12") (Name Visible "12") (PinSwap 0) (PartSwap 0) (PinSeq 12) (Part 1)
+Pin (Location 1700, -300) (Rotation 0) (PinType Passive) (Length 300) (Width 0) (Designator Visible "13") (Name Visible "13") (PinSwap 0) (PartSwap 0) (PinSeq 13) (Part 1)
+Pin (Location 1700, -200) (Rotation 0) (PinType Passive) (Length 300) (Width 0) (Designator Visible "14") (Name Visible "14") (PinSwap 0) (PartSwap 0) (PinSeq 14) (Part 1)
+Pin (Location 1700, -100) (Rotation 0) (PinType Passive) (Length 300) (Width 0) (Designator Visible "15") (Name Visible "15") (PinSwap 0) (PartSwap 0) (PinSeq 15) (Part 1)
+Pin (Location 1700, 0) (Rotation 0) (PinType Passive) (Length 300) (Width 0) (Designator Visible "16") (Name Visible "16") (PinSwap 0) (PartSwap 0) (PinSeq 16) (Part 1)
+Rectangle (Width 5) (Start 300, -900) (End 1700, 200) (Part 1)
+Parameter (Name "Copyright") (Location 0, 0) (Height 50) (Rotation 0) (Justification Center) (Value "Copyright (C) 2022 Ultra Librarian. All rights reserved.") (Part 1)
+Parameter (Name "Mfr_Name") (Location 0, 0) (Height 50) (Rotation 0) (Justification Center) (Value "TE Connectivity") (Part 1)
+Parameter (Name "Manufacturer_Part_Number") (Location 0, 0) (Height 50) (Rotation 0) (Justification Center) (Value "281742-8") (Part 1)
+Parameter (Name "RefDes") (Location 1000, 400) (Height 82) (Rotation 0) (Justification Center) (Value "RefDes") (Part 1)
+Parameter (Name "Type") (Location 1000, 300) (Height 82) (Rotation 0) (Justification Center) (Value "DEV") (Part 1)
+Description (Value "No Description Available") (Part 1)
+Comment (Value "281742-8") (Part 1)
+Footprint (Name "281742-8_TYC")
+EndComponent
+EndComponents
