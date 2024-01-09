@@ -58,7 +58,7 @@ All the files used during the INTUITIVE project.
 - utils
 	- various useful MATLAB scripts.
  - intuitivechip_classifier_lcsvsnlcs_teensy_run2 -> contains LCS vs N-LCS comparisons (using chip spikes)
- 	-  SENSOR_DATASETS -> LCS and N-LCS spike datasets
-    	-  SNN_SVM_PLOTS -> contains code to plot SNN+SVM results
+ 	-  SENSOR_DATASETS -> LCS and N-LCS spike datasets;   SNN_SVM_PLOTS -> contains code to plot SNN+SVM results
+
    
      
