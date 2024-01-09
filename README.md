@@ -32,7 +32,7 @@ All the files used during the INTUITIVE project.
        - 'datasetPath' -> spike dataset 
 
 -------------------------------------------------------
-# VLSI23 (JOURNAL)
+# TBCAS24 (JOURNAL) [submitted]
 - intuitive_classifier
 	- contains result of characterization of effect of circuit non-idealities to classification accuracy
 - intuitive_classifier_sensor
@@ -56,5 +56,9 @@ All the files used during the INTUITIVE project.
 - spikegen
 	- contains MATLAB scripts to generate model spikes used in characterization of effect of circuit non-idealities
 - utils
-	- various useful MATLAB scripts. 
+	- various useful MATLAB scripts.
+ - intuitivechip_classifier_lcsvsnlcs_teensy_run2 -> contains LCS vs N-LCS comparisons (using chip spikes)
+ 	-  SENSOR_DATASETS -> LCS and N-LCS spike datasets
+    	-  SNN_SVM_PLOTS -> contains code to plot SNN+SVM results
+   
      
