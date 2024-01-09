@@ -1,0 +1,50 @@
+% sensor PVDF thickness profile mismatch
+% obtained from Frederik's FIBs
+
+% Data
+left = [0.38, 0.42];
+mid = [1.22, 1.02, 0.55];
+right = [0.8997, 0.6];
+
+% Calculate means
+left_mean = mean(left);
+mid_mean = mean(mid);
+right_mean = mean(right);
+
+% Create a horizontal bar plot (exchanging x and y axes)
+figure;
+barh([left, mid, right]);
+hold on;
+
+% Overlay dashed lines for means
+%y = 1:3;
+%plot([left_mean, mid_mean, right_mean], y, '--');
+
+% Customize the plot
+yticks([]);
+yticklabels({});
+xlabel(['Measured PVDF', newline, 'Layer Thickness (\mum)']);
+%title('PVDF Layer Thickness');
+
+line([0, 1.22], [2.5, 2.5], 'LineStyle', '--', 'Color', 'k');
+line([0, 1.22], [5.5, 5.5], 'LineStyle', '--', 'Color', 'k');
+
+% Add data labels on the left side of bars
+labels = {'Left', 'Mid', 'Right'};
+label_positions = [-0.1, -0.1, -0.1];
+text(label_positions, [1.5 4 6.5], labels, 'HorizontalAlignment', 'center', 'Rotation',270);
+
+% Add text showing mean and sigma on the right side
+t1=text(0.4, 1, sprintf('Mean: %.2f\\mum\nSigma: %.2f\\mum', mean([left mid right]), std([left mid right])), 'HorizontalAlignment', 'left');
+
+hold off;
+micasplot
+
+set(t1, 'FontSize', 13);
+
+% Set the width and height of the figure (in pixels)
+width = 300;    % Specify your desired width here
+height = 400;   % Specify your desired height here
+set(gcf, 'Position', [100, 100, width, height]);
+saveas(gcf,['pvdf_thickness.fig'])
+saveas(gcf,['pvdf_thickness.png'])

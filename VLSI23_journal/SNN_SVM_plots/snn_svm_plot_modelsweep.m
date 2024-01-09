@@ -1253,13 +1253,15 @@ h(1) = errorbar(wnoise_arr_ext, results_linear_maxfold_wnoise_arr(1:4)./results_
 h(2) = errorbar(wnoise_arr_ext, results_linear_maxfold_wnoise_arr_trainonclean(1:4)./results_linear_maxfold_wnoise_arr(1), [std(results_linear_maxfold_wnoise_trainonclean(1,:))./results_linear_maxfold_wnoise_arr(1) std(results_linear_maxfold_wnoise_trainonclean(2,:))./results_linear_maxfold_wnoise_arr(1) std(results_linear_maxfold_wnoise_trainonclean(3,:))./results_linear_maxfold_wnoise_arr(1) std(results_linear_maxfold_wnoise_trainonclean(4,:))./results_linear_maxfold_wnoise_arr(1)],'--','Color',[0.4940 0.1840 0.5560],'LineWidth',3); 
 xlim([0 max(wnoise_arr_ext)])
 xlab_wnoise= xlabel('AFE white noise power (V^{2})')
-ylab_wnoise= ylabel(['Normalized',newline,'Classification',newline,'Accuracy',newline,' (10 k-folds)'])
+%ylab_wnoise= ylabel(['Normalized',newline,'Classification',newline,'Accuracy',newline,' (10 k-folds)'])
 hold off;
 xticks = unique([0 wnoise_arr_ext(2:4)]);
 set(gca, 'YGrid', 'on');
-set(gca, 'YTick', 0:0.05:1.5*max(results_linear_maxfold_wnoise_arr(1)));
+set(gca, 'YTick', 0:0.1:1.5*max(results_linear_maxfold_wnoise_arr(1)));
 set(gca,'XScale','log');
 set(gca, 'XTick', xticks, 'XTickLabel', xticks);
+
+%lgd = legend(h,'Trained on noisy data','Trained on clean data');
 
 subplot(4,1,2)
 hold on; 
@@ -1267,11 +1269,11 @@ h(1) = errorbar(fnoise_arr_ext, results_linear_maxfold_fnoise_arr(1:4)./results_
 h(2) = errorbar(fnoise_arr_ext, results_linear_maxfold_fnoise_arr_trainonclean(1:4)./results_linear_maxfold_fnoise_arr(1), [std(results_linear_maxfold_fnoise_trainonclean(1,:))./results_linear_maxfold_fnoise_arr(1) std(results_linear_maxfold_fnoise_trainonclean(2,:))./results_linear_maxfold_fnoise_arr(1) std(results_linear_maxfold_fnoise_trainonclean(3,:))./results_linear_maxfold_fnoise_arr(1) std(results_linear_maxfold_fnoise_trainonclean(4,:))./results_linear_maxfold_fnoise_arr(1)],'--','Color',[0.4940 0.1840 0.5560],'LineWidth',3); 
 xlim([0 max(fnoise_arr_ext)])
 xlab_fnoise= xlabel('AFE flicker noise power at 1Hz (V^{2}/Hz)')
-ylab_fnoise= ylabel(['Normalized',newline,'Classification',newline,'Accuracy',newline,' (10 k-folds)'])
+%ylab_fnoise= ylabel(['Normalized',newline,'Classification',newline,'Accuracy',newline,' (10 k-folds)'])
 hold off;
 xticks = unique([0 fnoise_arr_ext(2:4)]);
 set(gca, 'YGrid', 'on');
-set(gca, 'YTick', 0:0.05:1.5*max(results_linear_maxfold_fnoise_arr(1)));
+set(gca, 'YTick', 0:0.1:1.5*max(results_linear_maxfold_fnoise_arr(1)));
 set(gca,'XScale','log');
 set(gca, 'XTick', xticks, 'XTickLabel', xticks);
 
@@ -1281,11 +1283,11 @@ h(1) = errorbar(thnoise_arr_ext, results_linear_maxfold_thnoise_arr(1:4)./result
 h(2) = errorbar(thnoise_arr_ext, results_linear_maxfold_thnoise_arr_trainonclean(1:4)./results_linear_maxfold_thnoise_arr(1), [std(results_linear_maxfold_thnoise_trainonclean(1,:))./results_linear_maxfold_thnoise_arr(1) std(results_linear_maxfold_thnoise_trainonclean(2,:))./results_linear_maxfold_thnoise_arr(1) std(results_linear_maxfold_thnoise_trainonclean(3,:))./results_linear_maxfold_thnoise_arr(1) std(results_linear_maxfold_thnoise_trainonclean(4,:))./results_linear_maxfold_thnoise_arr(1)],'--','Color',[0.4940 0.1840 0.5560],'LineWidth',3); 
 xlim([0 max(thnoise_arr_ext)])
 xlab_thnoise= xlabel('Spiking Threshold Noise Power (V^{2})')
-ylab_thnoise= ylabel(['Normalized',newline,'Classification',newline,'Accuracy',newline,' (10 k-folds)'])
+%ylab_thnoise= ylabel(['Normalized',newline,'Classification',newline,'Accuracy',newline,' (10 k-folds)'])
 hold off;
 xticks = unique([0 thnoise_arr_ext(2:4)]);
 set(gca, 'YGrid', 'on');
-set(gca, 'YTick', 0:0.05:1.5*max(results_linear_maxfold_thnoise_arr(1)));
+set(gca, 'YTick', 0:0.1:1.5*max(results_linear_maxfold_thnoise_arr(1)));
 set(gca,'XScale','log');
 set(gca, 'XTick', xticks, 'XTickLabel', xticks);
 
@@ -1295,34 +1297,40 @@ h(1) = errorbar(thmismatch_arr_ext(1:3), results_linear_maxfold_thmismatch_arr(1
 h(2) = errorbar(thmismatch_arr_ext(1:3), results_linear_maxfold_thmismatch_arr_trainonclean(1:3)./results_linear_maxfold_thmismatch_arr(1), [std(results_linear_maxfold_thmismatch_trainonclean(1,:))./results_linear_maxfold_thmismatch_arr(1) std(results_linear_maxfold_thmismatch_trainonclean(2,:))./results_linear_maxfold_thmismatch_arr(1) std(results_linear_maxfold_thmismatch_trainonclean(3,:))./results_linear_maxfold_thmismatch_arr(1)],'--','Color',[0.4940 0.1840 0.5560],'LineWidth',3); 
 xlim([0 max(thmismatch_arr_ext(1:3))])
 xlab_thmismatch= xlabel('Spiking Threshold Noise Mismatch (V^{2})')
-ylab_thmismatch= ylabel(['Normalized',newline,'Classification',newline,'Accuracy',newline,' (10 k-folds)'])
+%ylab_thmismatch= ylabel(['Normalized',newline,'Classification',newline,'Accuracy',newline,' (10 k-folds)'])
 xticks = unique([0 thmismatch_arr_ext(2:3)]);
 set(gca, 'YGrid', 'on');
-set(gca, 'YTick', 0:0.05:1.5*max(results_linear_maxfold_thmismatch_arr(1)));
+set(gca, 'YTick', 0:0.1:1.5*max(results_linear_maxfold_thmismatch_arr(1)));
 set(gca,'XScale','log');
 set(gca, 'XTick', xticks, 'XTickLabel', xticks);
 hold off;
 grid off;
-lgd = legend(h,'Trained on noisy data','Trained on clean data');
 
+
+lgd = legend(h,'Trained on noisy data','Trained on clean data');
 
 
 micasplot
 
+
+
 % Change font size of x-axis label and y-axis label using handle
 set(xlab_wnoise, 'FontSize', 12); % Adjust font size as needed
-set(ylab_wnoise, 'FontSize', 10); % Adjust font size as needed
+%set(ylab_wnoise, 'FontSize', 10); % Adjust font size as needed
 set(xlab_fnoise, 'FontSize', 12); % Adjust font size as needed
-set(ylab_fnoise, 'FontSize', 10); % Adjust font size as needed
+%set(ylab_fnoise, 'FontSize', 10); % Adjust font size as needed
 set(xlab_thnoise, 'FontSize', 12); % Adjust font size as needed
-set(ylab_thnoise, 'FontSize', 10); % Adjust font size as needed
+%set(ylab_thnoise, 'FontSize', 10); % Adjust font size as needed
 set(xlab_thmismatch, 'FontSize', 12); % Adjust font size as needed
-set(ylab_thmismatch, 'FontSize', 10); % Adjust font size as needed
+%set(ylab_thmismatch, 'FontSize', 10); % Adjust font size as needed
 
 
-lgd.Location = 'Northwest';
-set(findall(gcf,'-property','FontSize'),'FontSize',12)
-lgd.FontSize = 10; 
+lgd.Location = 'Best';
+set(findall(gcf,'-property','FontSize'),'FontSize',14)
+lgd.FontSize = 15; 
+
+ylab= ylabel(['Normalized Classification Accuracy (10 k-folds)'],'FontSize',17)
+set(ylab, 'Units', 'Normalized', 'Position', [-0.075, 3, 0]);
 
 set(gcf, 'Position', [100, 100, 1000, 900]); saveas(gcf,['Kyl6-combinedall2-',num2str(figi),'.fig']); saveas(gcf,['Kyl6-combinedall2-',num2str(figi),'.png']);
 
