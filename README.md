@@ -14,7 +14,7 @@ All the files used during the INTUITIVE project.
 
 -------------------------------------------------------
 # VLSI23
- - MATLAB files used in VLSI23 paper
+ - MATLAB files used in VLSI23 paper: https://ieeexplore.ieee.org/document/10185346
    - automated dataset recording -> dataset_workflow_onedac.m
      - texture image to tactile sensor data
      - generate scaled datastream as input for VDACs (used as ideal input for the INTUITIVE chip)
