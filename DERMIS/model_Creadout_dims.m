@@ -1,4 +1,5 @@
 % remember this only works for AC VTX, results are AC magnitudes
+%Cs1 and Cs2 are reversed but who cares
 
 clear all
 close all
@@ -7,7 +8,7 @@ close all
 % C0=0.6125e-15; % no normal force
 N=5;
 % deltaC=[0:C0/2^N:C0];
-Cf=10e-15;
+Cf=40e-15;
 % Cs1=C0-deltaC; Cs2=C0+deltaC;
 VDD=3.3;
 Vocm=VDD/2; % this is the source of nonlinearity for VCM measurements
@@ -41,8 +42,8 @@ ylabel('Capacitance (F)')
 legend('Cs1','Cs2','Location','best')
 
 % VDIFF mode
-Vinp=VDD;
-Vinn=VDD;
+Vinp=VDD; %0 IF CT; VDD IF DT
+Vinn=VDD; %0 IF CT; VDD IF DT
 
 beta1=Cf./(Cf+Cs2); beta2=Cf./(Cf+Cs1);
 Voutp= ((Vinp).*(1-beta1) - (Vinn).*(1-beta2) + 2*Vocm.*beta1) ./ (beta1+beta2);
